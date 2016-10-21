@@ -1,4 +1,6 @@
 {
-  "name": "react-redux-starter-kit",
-  "dependencies": {}
+  "dependencies": {
+    "react": "registry:npm/react#15.0.1+20160601175240",
+    "react-router": "registry:npm/react-router#2.4.0+20160915183637"
+  }
 }
