@@ -6,11 +6,17 @@ const config = require('../config')
 
 const app = express()
 const paths = config.utils_paths
+const proxy = require('http-proxy-middleware')
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
 // rendering, you'll want to remove this middleware.
 app.use(require('connect-history-api-fallback')())
+// proxy middleware options - Enable api-proxy if it has been enabled in the config.
+if (config.proxy && config.proxy.enabled) {
+  const apiProxy = proxy('/api', {target: config.proxy.options.host});
+  app.use(apiProxy)
+}
 
 // ------------------------------------
 // Apply Webpack HMR Middleware
