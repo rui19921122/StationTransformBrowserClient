@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {hashHistory} from 'react-router'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import 'antd/dist/antd.css'
@@ -19,7 +20,7 @@ let render = () => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes}  />,
+    <AppContainer store={store} routes={routes}/>,
     MOUNT_NODE
   )
 }
@@ -27,11 +28,6 @@ let render = () => {
 // ========================================================
 // Developer Tools Setup
 // ========================================================
-if (__DEV__) {
-  if (window.devToolsExtension) {
-    window.devToolsExtension.open()
-  }
-}
 
 // This code is excluded from production bundle
 if (__DEV__) {
@@ -41,7 +37,7 @@ if (__DEV__) {
     const renderError = (error) => {
       const RedBox = require('redbox-react').default
 
-      ReactDOM.render(<RedBox error={error} />, MOUNT_NODE)
+      ReactDOM.render(<RedBox error={error}/>, MOUNT_NODE)
     }
 
     // Wrap render in try/catch

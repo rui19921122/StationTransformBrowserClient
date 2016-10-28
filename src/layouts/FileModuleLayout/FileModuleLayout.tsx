@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../../components/Header'
+import {ListMenu} from '../../components/ListMenu/menu'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 

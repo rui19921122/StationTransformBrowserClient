@@ -8,6 +8,7 @@ debug('Creating default configuration.')
 // ========================================================
 // Default Configuration
 // ========================================================
+console.log(ip.address())
 const config = {
   env : process.env.NODE_ENV || 'development',
 
