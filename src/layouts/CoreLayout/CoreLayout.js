@@ -4,16 +4,16 @@ import './CoreLayout.scss'
 import '../../styles/core.scss'
 
 export const CoreLayout = ({children}) => (
-  <div className='page-wrapper'>
-    <Header />
-    <div className='main-wrapper'>
-      {children}
-    </div>
-  </div>
+	<div className='page-wrapper'>
+		<Header />
+		<div className='main-wrapper'>
+			{children}
+		</div>
+	</div>
 );
 
 CoreLayout.propTypes = {
-  children: React.PropTypes.element.isRequired
+	children: React.PropTypes.element.isRequired
 }
 
 export default CoreLayout
