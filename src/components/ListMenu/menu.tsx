@@ -2,9 +2,12 @@
  * Created by Administrator on 2016/10/23.
  */
 import * as React from 'react'
-import {Menu} from 'antd'
+import './style.scss'
+import {Menu, Dropdown, Icon} from 'antd'
 import {MenuStoreInterface, actions as menu_actions} from '../../store/global_reducers/menu'
 import {MenuItemInterface, detailItemInterface} from '../../api/menu'
+
+
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
@@ -28,12 +31,26 @@ export class ListMenu extends React.Component<props,void> {
 
     const render_single_node = (item: detailItemInterface)=> {
       const {name, url} = get_node_name(item.id);
-      if (item.children.length > 0) {
-        return <SubMenu title={name}
-                        onTitleClick={()=>this.props.handle_items_click(url)}
-                        key={item.id}>{item.children.map(render_single_node)}</SubMenu>
+      let settings;
+      if (this.props.menu.managed.indexOf(item.id) >= 0) {
+        settings = <Icon type="setting"
+                         className="icon-settings"
+                         onClick={(e)=>{
+        {/*todo 完成设置界面,并为鼠标进入添加动画*/}
+        e.stopPropagation()
+        }}/>;
       } else {
-        return <Item key={item.id} data-url={url}>{name}</Item>
+        settings = <span />
+      }
+      if (item.children.length > 0) {
+        return <SubMenu title={<div>{settings}<span>{name}</span></div>}
+                        key={item.id}>
+          {item.children.map(render_single_node)}
+        </SubMenu>
+      } else {
+        return <Item key={item.id} data-url={url}>
+          <div>{settings}<span>{name}</span></div>
+        </Item>
       }
     };
 

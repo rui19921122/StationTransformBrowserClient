@@ -1,5 +1,4 @@
 import {connect} from 'react-redux'
-import {increment, doubleAsync} from '../modules/reducer'
 
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
@@ -12,11 +11,11 @@ import View from '../components/view'
  Keys will be passed as props to presentational components. Here we are
  implementing our wrapper around increment; the component doesn't care   */
 
-const mapDispatchToProps = {};
 
 const mapStateToProps = (state) => ({
   menu: state.menu,
-  articles: state.article
+  articles: state.articles,
+  location: state.location
 });
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

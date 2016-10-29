@@ -3,6 +3,7 @@
  * Created by Administrator on 2016/10/23.
  */
 const React = require('react');
+require('./style.scss');
 const antd_1 = require('antd');
 const menu_1 = require('../../store/global_reducers/menu');
 const Item = antd_1.Menu.Item;
@@ -21,11 +22,21 @@ class ListMenu extends React.Component {
         };
         const render_single_node = (item) => {
             const { name, url } = get_node_name(item.id);
-            if (item.children.length > 0) {
-                return React.createElement(SubMenu, {title: name, onTitleClick: () => this.props.handle_items_click(url), key: item.id}, item.children.map(render_single_node));
+            let settings;
+            if (this.props.menu.managed.indexOf(item.id) >= 0) {
+                settings = React.createElement(antd_1.Icon, {type: "setting", className: "icon-settings", onClick: (e) => {
+                    { }
+                    e.stopPropagation();
+                }});
             }
             else {
-                return React.createElement(Item, {key: item.id, "data-url": url}, name);
+                settings = React.createElement("span", null);
+            }
+            if (item.children.length > 0) {
+                return React.createElement(SubMenu, {title: React.createElement("div", null, settings, React.createElement("span", null, name)), key: item.id}, item.children.map(render_single_node));
+            }
+            else {
+                return React.createElement(Item, {key: item.id, "data-url": url}, React.createElement("div", null, settings, React.createElement("span", null, name)));
             }
         };
         return (React.createElement(antd_1.Menu, {mode: "inline", key: "menu"}, this.props.menu.sort.length > 0 ? this.props.menu.sort.map(render_single_node) : this.props.dispatch(menu_1.actions.update_menu())));

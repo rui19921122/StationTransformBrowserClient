@@ -15,7 +15,8 @@ exports.update_menu = () => {
 };
 let initial_state = {
     list: [],
-    sort: []
+    sort: [],
+    managed: []
 };
 exports.actions = {
     update_menu: exports.update_menu
@@ -25,7 +26,8 @@ exports.default = redux_actions_1.handleActions({
     update_menu_info: (state, action) => {
         return Object.assign({}, state, {
             list: action.payload['items'],
-            sort: action.payload['sort']
+            sort: action.payload['sort'],
+            managed: action.payload['managed']
         });
     }
 }, initial_state);

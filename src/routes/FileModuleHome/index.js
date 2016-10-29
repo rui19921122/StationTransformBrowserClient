@@ -12,13 +12,13 @@ export default (store) => ({
       const container = require('./containers/container').default;
       const reducer = require('./modules/reducer').default;
 
-      /*  Add the reducer to the store on key 'counter'  */
-      injectReducer(store, {key: 'list_articles', reducer});
+      /*  Add the reducer to the store on key 'articles'  */
+      injectReducer(store, {key: 'articles', reducer});
 
       /*  Return getComponent   */
       cb(null, container);
 
       /* Webpack named bundle   */
-    }, 'file-module')
+    }, 'file-module-list')
   }
 })

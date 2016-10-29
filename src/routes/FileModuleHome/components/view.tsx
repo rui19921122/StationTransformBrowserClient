@@ -8,7 +8,8 @@ import {ListArticlesInterface} from '../modules/reducer';
 interface props {
   dispatch: Dispatch<any>,
   menu: MenuStoreInterface,
-  list_articles: ListArticlesInterface
+  articles: ListArticlesInterface,
+  location: any
 }
 
 export class FileModuleListView extends React.Component<props,any> {
@@ -20,7 +21,10 @@ export class FileModuleListView extends React.Component<props,any> {
     console.log(this.props);
     return (
       <FileModuleLayout handle_items_click={this.handle_items_click} {...this.props}>
-        <ArticleDisplay dispatch={this.props.dispatch}/>
+        <ArticleDisplay dispatch={this.props.dispatch}
+                        articles={this.props.articles}
+                        location={this.props.location}
+        />
       </FileModuleLayout>
     )
   }
