@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {hashHistory} from 'react-router'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 import 'antd/dist/antd.css'

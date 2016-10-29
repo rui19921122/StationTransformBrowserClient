@@ -7,7 +7,6 @@ import {IndexLink, Link} from 'react-router'
 import './Header.scss'
 const SubMenu = Menu.SubMenu;
 const Item = Menu.Item;
-import fetch_api from './../../http'
 
 export const Header = () => {
   return (<header id="header">

@@ -1,19 +1,13 @@
 /**
  * Created by Administrator on 2016/10/23.
  */
-interface MenuItemInterface {
+export interface MenuItemInterface {
   name: string,
   parent: void|number,
   id: number,
+  url: string
 }
-interface detailItemInterface {
+export interface detailItemInterface {
   id: number,
   children: detailItemInterface[]
 }
-
-interface MenuListInterface {
-  items: MenuItemInterface[],
-  detail: detailItemInterface[]
-}
-
-

@@ -1,8 +1,17 @@
 "use strict";
-const react_1 = require('react');
-const Header_1 = require('../../components/Header');
-require('./CoreLayout.scss');
+const React = require('react');
+const menu_1 = require('../../components/ListMenu/menu');
+const antd_1 = require('antd');
 require('../../styles/core.scss');
-exports.CoreLayout = ({ children }) => (react_1.default.createElement("div", {className: 'page-wrapper'}, react_1.default.createElement(Header_1.default, null), react_1.default.createElement("div", {className: 'main-wrapper'}, children)));
+class FileModuleLayout extends React.Component {
+    render() {
+        return (React.createElement(antd_1.Row, {style: { minHeight: '700px' }}, 
+            React.createElement(antd_1.Col, {span: 4}, 
+                React.createElement(menu_1.ListMenu, {dispatch: this.props.dispatch, menu: this.props.menu})
+            ), 
+            React.createElement(antd_1.Col, {span: 20}, this.props.children)));
+    }
+}
+exports.FileModuleLayout = FileModuleLayout;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = exports.CoreLayout;
+exports.default = FileModuleLayout;
