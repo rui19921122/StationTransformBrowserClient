@@ -3,19 +3,17 @@
  * Created by Administrator on 2016/10/23.
  */
 const React = require('react');
-const antd_1 = require('antd');
+const ArticleTable_1 = require('../../../components/ArticleTable/ArticleTable');
+const articles_1 = require('../../../store/global_reducers/articles');
 class ArticleDisplay extends React.Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        // this.props.dispatch(actions.get_articles(this.props.location.params));
+        this.props.dispatch(articles_1.actions.get_articles(0));
     }
     render() {
-        const headers = [
-            { title: "test" },
-        ];
-        return (React.createElement(antd_1.Table, {columns: headers, dataSource: this.props.articles.articles, loading: this.props.articles.fetching}));
+        return (React.createElement(ArticleTable_1.ArticleTable, {articles: this.props.articles, dispatch: this.props.dispatch, menu_id: 0}));
     }
 }
 exports.ArticleDisplay = ArticleDisplay;

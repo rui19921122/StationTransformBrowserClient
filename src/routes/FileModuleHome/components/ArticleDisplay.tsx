@@ -3,33 +3,29 @@
  */
 import * as React from 'react'
 import {Table} from 'antd';
-import {TableColumnConfig} from 'antd/lib/Table/Table'
-import {ListArticlesStoreInterface, actions} from './../modules/reducer'
+import {ArticleTable} from '../../../components/ArticleTable/ArticleTable';
+import {TableColumnConfig} from "antd/lib/table/Table";
+import {ArticleStoreInterface, actions} from '../../../store/global_reducers/articles';
 interface props {
   dispatch: any,
   location: any,
-  articles: ListArticlesStoreInterface
+  articles: ArticleStoreInterface
 }
 export class ArticleDisplay extends React.Component<props,void> {
   constructor(props) {
     super(props)
   }
 
-  private componentDidMount() {
-    // this.props.dispatch(actions.get_articles(this.props.location.params));
+  componentDidMount() {
+    this.props.dispatch(actions.get_articles(0));
   }
 
   render() {
-    const headers: TableColumnConfig[] = [
-      {title: "test"},
-    ];
-
     return (
-      <Table columns={headers}
-             dataSource={this.props.articles.articles}
-             loading={this.props.articles.fetching}
-      >
-      </Table>
+      <ArticleTable articles={this.props.articles}
+                    dispatch={this.props.dispatch}
+                    menu_id={0}
+      />
     )
   }
 }

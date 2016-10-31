@@ -1,29 +1,28 @@
 import * as React from 'react'
 import './components.scss'
 import {FileModuleLayout} from '../../../layouts/FileModuleLayout/FileModuleLayout';
-import {ArticleDisplay} from './ArticleDisplay'
+import {ArticleTable} from '../../../components/ArticleTable/ArticleTable';
 import {Dispatch} from "redux";
 import {MenuStoreInterface} from "../../../store/global_reducers/menu";
-import {ListArticlesInterface} from '../modules/reducer';
+import {ArticleStoreInterface, actions as article_actions} from "../../../store/global_reducers/articles";
 interface props {
-  dispatch: Dispatch<any>,
+  dispatch: any,
   menu: MenuStoreInterface,
-  articles: ListArticlesInterface,
+  articles: ArticleStoreInterface,
   location: any
 }
 
 export class FileModuleListView extends React.Component<props,any> {
-  handle_items_click(url) {
-    console.log(url)
+  componentDidMount() {
+    this.props.dispatch(article_actions.get_articles(0));
   }
 
   render() {
-    console.log(this.props);
     return (
-      <FileModuleLayout handle_items_click={this.handle_items_click} {...this.props}>
-        <ArticleDisplay dispatch={this.props.dispatch}
-                        articles={this.props.articles}
-                        location={this.props.location}
+      <FileModuleLayout {...this.props}>
+        <ArticleTable articles={this.props.articles}
+                      dispatch={this.props.dispatch}
+                      menu_id={0}
         />
       </FileModuleLayout>
     )

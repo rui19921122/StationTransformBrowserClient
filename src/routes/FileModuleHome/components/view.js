@@ -10,16 +10,14 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
 const React = require('react');
 require('./components.scss');
 const FileModuleLayout_1 = require('../../../layouts/FileModuleLayout/FileModuleLayout');
-const ArticleDisplay_1 = require('./ArticleDisplay');
+const ArticleTable_1 = require('../../../components/ArticleTable/ArticleTable');
+const articles_1 = require("../../../store/global_reducers/articles");
 class FileModuleListView extends React.Component {
-    handle_items_click(url) {
-        console.log(url);
+    componentDidMount() {
+        this.props.dispatch(articles_1.actions.get_articles(0));
     }
     render() {
-        console.log(this.props);
-        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({handle_items_click: this.handle_items_click}, this.props), 
-            React.createElement(ArticleDisplay_1.ArticleDisplay, {dispatch: this.props.dispatch, articles: this.props.articles, location: this.props.location})
-        ));
+        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({}, this.props), React.createElement(ArticleTable_1.ArticleTable, {articles: this.props.articles, dispatch: this.props.dispatch, menu_id: 0})));
     }
 }
 exports.FileModuleListView = FileModuleListView;
