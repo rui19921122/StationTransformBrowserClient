@@ -16,7 +16,7 @@ export const Header = () => {
       </Col>
       <Col span={15}>
         <Menu mode="horizontal" id="nav">
-          <Item><Link to={"main"}><span>test1</span></Link></Item>
+          <Item><Link to={"/file-module-list/"}><span>test1</span></Link></Item>
           <Item><Link to={"#"}>模块名称1</Link></Item>
           <Item><Link to={"#"}>模块名称1</Link></Item>
         </Menu>

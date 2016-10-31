@@ -3,3 +3,28 @@
   font-weight: bold;
   color: #d00300;
 }
+
+.menu-setting {
+  border: 1px solid;
+  border-color: #15ff02;
+}
+
+.warn {
+  color: red;
+}
+@keyframes warn_keyframes {
+  to {
+    font-size: 110%;
+  }
+}
+
+.warn:hover {
+  background-color: red;
+  color: white;
+}
+
+
+.justify-button{
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}

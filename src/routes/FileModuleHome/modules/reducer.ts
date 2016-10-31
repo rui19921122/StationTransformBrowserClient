@@ -10,20 +10,14 @@ import {createAction, handleActions} from 'redux-actions'
 // ------------------------------------
 
 const update_articles = createAction('update_articles');
-export const get_articles = (pk: number) => {
-  let id: number;
-  if (pk) {
-    id = pk
-  } else {
-    id = 0
-  }
-  return (dispatch, getState) => {
-    fetch_api(url, 'get').then(json=>console.log(json))
-  }
+export const get_articles = (url) => {
+    return (dispatch, getState) => {
+        fetch_api(url, 'get').then(json=>console.log(json))
+    }
 };
 
 export const actions = {
-  get_articles
+    get_articles
 };
 
 // ------------------------------------
@@ -33,15 +27,15 @@ export const actions = {
 // Reducer
 // ------------------------------------
 const initialState = {
-  fetching: false,
-  articles: []
+    fetching: false,
+    articles: []
 };
 export interface ListArticlesStoreInterface {
-  articles: ArticleDetailInterface[],
-  fetching: boolean
+    articles: ArticleDetailInterface[],
+    fetching: boolean
 }
 export default handleActions({
-  update_articles: (state, action)=> {
-    return Object.assign({}, state, action.payload)
-  }
+    update_articles: (state, action)=> {
+        return Object.assign({}, state, action.payload)
+    }
 }, initialState)

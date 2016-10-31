@@ -4,14 +4,12 @@
  */
 const React = require('react');
 const antd_1 = require('antd');
-const reducer_1 = require('./../modules/reducer');
 class ArticleDisplay extends React.Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        console.log(this.props.location);
-        this.props.dispatch(reducer_1.actions.get_articles(this.props.location.params));
+        // this.props.dispatch(actions.get_articles(this.props.location.params));
     }
     render() {
         const headers = [

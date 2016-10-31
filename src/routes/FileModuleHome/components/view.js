@@ -17,7 +17,9 @@ class FileModuleListView extends React.Component {
     }
     render() {
         console.log(this.props);
-        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({handle_items_click: this.handle_items_click}, this.props), React.createElement(ArticleDisplay_1.ArticleDisplay, {dispatch: this.props.dispatch, articles: this.props.articles, location: this.props.location})));
+        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({handle_items_click: this.handle_items_click}, this.props), 
+            React.createElement(ArticleDisplay_1.ArticleDisplay, {dispatch: this.props.dispatch, articles: this.props.articles, location: this.props.location})
+        ));
     }
 }
 exports.FileModuleListView = FileModuleListView;

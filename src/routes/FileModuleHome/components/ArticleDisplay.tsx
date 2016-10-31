@@ -16,8 +16,7 @@ export class ArticleDisplay extends React.Component<props,void> {
   }
 
   private componentDidMount() {
-    console.log(this.props.location);
-    this.props.dispatch(actions.get_articles(this.props.location.params));
+    // this.props.dispatch(actions.get_articles(this.props.location.params));
   }
 
   render() {
@@ -30,7 +29,6 @@ export class ArticleDisplay extends React.Component<props,void> {
              dataSource={this.props.articles.articles}
              loading={this.props.articles.fetching}
       >
-
       </Table>
     )
   }
