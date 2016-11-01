@@ -16,6 +16,7 @@ const antd_1 = require('antd');
 const menu_1 = require('../../store/global_reducers/menu');
 const MenuDropDown_1 = require('./MenuDropDown');
 const UserSelect_1 = require('./UserSelect');
+const react_router_redux_1 = require('react-router-redux');
 const Item = antd_1.Menu.Item;
 const SubMenu = antd_1.Menu.SubMenu;
 class ListMenu extends React.Component {
@@ -40,7 +41,7 @@ class ListMenu extends React.Component {
                 settings = '';
             }
             if (item.children.length > 0) {
-                return React.createElement(SubMenu, {title: React.createElement("div", null, settings, React.createElement("span", null, name)), key: item.id}, item.children.map(render_single_node));
+                return React.createElement(SubMenu, {title: React.createElement("div", null, settings, React.createElement("span", null, name)), onTitleClick: (key) => this.props.dispatch(react_router_redux_1.push(`/file-module-list/${key.key}/articles/`)), key: item.id}, item.children.map(render_single_node));
             }
             else {
                 return React.createElement(Item, {key: item.id, "data-url": url}, React.createElement("div", null, settings, React.createElement("span", null, name)));
@@ -50,7 +51,7 @@ class ListMenu extends React.Component {
             React.createElement(antd_1.Input.Group, {style: {
                 paddingLeft: '22px',
                 paddingRight: '22px'
-            }}, React.createElement(antd_1.Input, {placeholder: "添加根菜单项", ref: "input", value: this.props.menu.adding_content, onChange: e => this.props.dispatch(menu_1.actions.change_store_without_api(['adding_content', e.target.value]))}), React.createElement("div", {className: "ant-input-group-wrap"}, React.createElement(antd_1.Button, {onClick: e => this.props.dispatch(menu_1.actions.add_menu(this.props.menu.adding_content)), disabled: this.props.menu.adding_content.length > 0 ? false : true, loading: this.props.menu.adding_root_fetching, className: "ant-search-btn justify-button"}, "添加"))) : '', React.createElement(antd_1.Menu, {mode: "inline", key: "menu"}, this.props.menu.sort.length > 0 ? this.props.menu.sort.map(render_single_node) : this.props.dispatch(menu_1.actions.update_menu())), React.createElement(antd_1.Modal, {closable: true, title: "转让菜单所有权", visible: this.props.menu.convert_modal_visible, onOk: () => this.props.dispatch(menu_1.actions.change_store_without_api(['convert_modal_visible', false]))}, React.createElement(UserSelect_1.default, __assign({}, this.props)))));
+            }}, React.createElement(antd_1.Input, {placeholder: "添加根菜单项", ref: "input", value: this.props.menu.adding_content, onChange: e => this.props.dispatch(menu_1.actions.change_store_without_api(['adding_content', e.target.value]))}), React.createElement("div", {className: "ant-input-group-wrap"}, React.createElement(antd_1.Button, {onClick: e => this.props.dispatch(menu_1.actions.add_menu(this.props.menu.adding_content)), disabled: this.props.menu.adding_content.length > 0 ? false : true, loading: this.props.menu.adding_root_fetching, className: "ant-search-btn justify-button"}, "添加"))) : '', React.createElement(antd_1.Menu, {mode: "inline", key: "menu", onClick: (obj) => this.props.dispatch(react_router_redux_1.push(`/file-module-list/${obj.key}/articles/`))}, this.props.menu.sort.length > 0 ? this.props.menu.sort.map(render_single_node) : this.props.dispatch(menu_1.actions.update_menu())), React.createElement(antd_1.Modal, {closable: true, title: "转让菜单所有权", visible: this.props.menu.convert_modal_visible, onOk: () => this.props.dispatch(menu_1.actions.change_store_without_api(['convert_modal_visible', false]))}, React.createElement(UserSelect_1.default, __assign({}, this.props)))));
     }
 }
 exports.ListMenu = ListMenu;

@@ -5,7 +5,8 @@ import {Provider} from 'react-redux'
 class AppContainer extends Component {
   static propTypes = {
     routes: PropTypes.object.isRequired,
-    store: PropTypes.object.isRequired
+    store: PropTypes.object.isRequired,
+    history:PropTypes.any
   }
 
   shouldComponentUpdate() {
@@ -13,12 +14,12 @@ class AppContainer extends Component {
   }
 
   render() {
-    const {routes, store} = this.props
+    const {routes, store,history} = this.props
 
     return (
       <Provider store={store}>
         <div style={{height: '100%'}}>
-          <Router history={hashHistory} children={routes} dispatch={store.dispatch}/>
+          <Router history={history} children={routes} dispatch={store.dispatch}/>
         </div>
       </Provider>
     )

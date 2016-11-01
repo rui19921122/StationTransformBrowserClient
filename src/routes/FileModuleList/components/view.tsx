@@ -10,23 +10,36 @@ interface props {
   dispatch: any,
   menu: MenuStoreInterface,
   articles: ArticleStoreInterface,
-  location: any
+  location: any,
+  params: {
+    id: string
+  }
 }
 const RangePicker = (DatePicker as any).RangePicker;
 
 export class FileModuleListView extends React.Component<props,any> {
   componentDidMount() {
-    this.props.dispatch(article_actions.get_articles(0));
+    this.props.dispatch(article_actions.get_articles(parseInt(this.props.params.id)));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    var nextAccountId = nextProps.params.id;
+    if (nextAccountId !== this.props.params.id) {
+      this.props.dispatch(article_actions.get_articles(nextAccountId));
+    }
   }
 
   render() {
     return (
-      <FileModuleLayout {...this.props}>
+      <FileModuleLayout
+        {...this.props}>
+        {this.props.menu.list.length>0?<div>
+          {/*当请求到menu后再加载，为了防止渲染失败*/}
         <Row type="flex" justify="center">
-          <h1>所有文章</h1>
+          <h1>{this.props.menu.list.find((value)=>value.id == parseInt(this.props.params.id)).name}</h1>
         </Row>
         <SearchToolBar dispatch={this.props.dispatch}
-                       menu_id={0}
+                       menu_id={parseInt(this.props.params.id)}
                        actions={{
                        search:article_actions.get_articles,
                        add:article_actions.get_articles
@@ -37,7 +50,7 @@ export class FileModuleListView extends React.Component<props,any> {
                           dispatch={this.props.dispatch}
                           menu_id={0}
             /></Col>
-        </Row>
+        </Row></div>:''}
       </FileModuleLayout>
     )
   }

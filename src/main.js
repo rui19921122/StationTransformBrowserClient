@@ -2,27 +2,30 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
+import {syncHistoryWithStore} from 'react-router-redux'
+import {hashHistory} from 'react-router'
 import 'antd/dist/antd.css'
 
 // ========================================================
 // Store Instantiation
 // ========================================================
-const initialState = window.___INITIAL_STATE__
-const store = createStore(initialState)
+const initialState = window.___INITIAL_STATE__;
+const store = createStore(initialState);
+const history=syncHistoryWithStore(hashHistory,store);
 
 // ========================================================
 // Render Setup
 // ========================================================
-const MOUNT_NODE = document.getElementById('root')
+const MOUNT_NODE = document.getElementById('root');
 
 let render = () => {
-  const routes = require('./routes/index').default(store)
+  const routes = require('./routes/index').default(store);
 
   ReactDOM.render(
-    <AppContainer store={store} routes={routes}/>,
+    <AppContainer store={store} routes={routes} history={history}/>,
     MOUNT_NODE
   )
-}
+};
 
 // ========================================================
 // Developer Tools Setup
@@ -32,12 +35,12 @@ let render = () => {
 if (__DEV__) {
   if (module.hot) {
     // Development render functions
-    const renderApp = render
+    const renderApp = render;
     const renderError = (error) => {
-      const RedBox = require('redbox-react').default
+      const RedBox = require('redbox-react').default;
 
       ReactDOM.render(<RedBox error={error}/>, MOUNT_NODE)
-    }
+    };
 
     // Wrap render in try/catch
     render = () => {
@@ -46,12 +49,12 @@ if (__DEV__) {
       } catch (error) {
         renderError(error)
       }
-    }
+    };
 
     // Setup hot module replacement
     module.hot.accept('./routes/index', () =>
       setImmediate(() => {
-        ReactDOM.unmountComponentAtNode(MOUNT_NODE)
+        ReactDOM.unmountComponentAtNode(MOUNT_NODE);
         render()
       })
     )
@@ -61,4 +64,4 @@ if (__DEV__) {
 // ========================================================
 // Go!
 // ========================================================
-render()
+render();

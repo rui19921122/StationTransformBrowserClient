@@ -8,6 +8,7 @@ import {MenuStoreInterface, actions as menu_actions} from '../../store/global_re
 import {MenuItemInterface, detailItemInterface} from '../../api/menu'
 import MenuDropDown from './MenuDropDown';
 import UserSelect from './UserSelect'
+import { push,go } from 'react-router-redux';
 
 
 interface props {
@@ -43,11 +44,14 @@ export class ListMenu extends React.Component<props,void> {
       }
       if (item.children.length > 0) {
         return <SubMenu title={<div>{settings}<span>{name}</span></div>}
+                        onTitleClick={(key)=>this.props.dispatch(push(`/file-module-list/${key.key}/articles/`))}
                         key={item.id}>
           {item.children.map(render_single_node)}
         </SubMenu>
       } else {
-        return <Item key={item.id} data-url={url}>
+        return <Item key={item.id} data-url={url}
+
+        >
           <div>{settings}<span>{name}</span></div>
         </Item>
       }
@@ -84,7 +88,9 @@ export class ListMenu extends React.Component<props,void> {
               >添加</Button>
             </div>
           </Input.Group>: ''}
-        <Menu mode="inline" key="menu">
+        <Menu mode="inline" key="menu"
+              onClick={(obj)=>this.props.dispatch(push(`/file-module-list/${obj.key}/articles/`))}
+        >
           {this.props.menu.sort.length > 0 ? this.props.menu.sort.map(render_single_node) : this.props.dispatch(
             menu_actions.update_menu()
           )}
