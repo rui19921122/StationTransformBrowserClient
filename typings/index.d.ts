@@ -1,3 +1,4 @@
+/// <reference path="globals/draft-js/index.d.ts" />
 /// <reference path="globals/isomorphic-fetch/index.d.ts" />
 /// <reference path="globals/rc-select/index.d.ts" />
 /// <reference path="globals/react-router-redux/index.d.ts" />
