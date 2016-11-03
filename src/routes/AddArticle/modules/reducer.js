@@ -8,13 +8,14 @@ const redux_actions_1 = require('redux-actions');
 // Actions
 // ------------------------------------
 const update_articles = redux_actions_1.createAction('update_articles');
-exports.get_articles = (url) => {
+exports.new_article = (title, menu, content) => {
     return (dispatch, getState) => {
-        http_1.default(url, 'get').then(json => console.log(json));
+        const url = `/api/menu/${menu}/articles/`;
+        http_1.default(url, 'post', false, {}, JSON.stringify({ name: title, content: content || '' })).then(json => console.log(json));
     };
 };
 exports.actions = {
-    get_articles: exports.get_articles
+    new_article: exports.new_article,
 };
 // ------------------------------------
 // Action Handlers

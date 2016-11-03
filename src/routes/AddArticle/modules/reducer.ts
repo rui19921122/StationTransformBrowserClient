@@ -10,14 +10,15 @@ import {createAction, handleActions} from 'redux-actions'
 // ------------------------------------
 
 const update_articles = createAction('update_articles');
-export const get_articles = (url) => {
+export const new_article = (title: string, menu: number, content: string) => {
   return (dispatch, getState) => {
-    fetch_api(url, 'get').then(json=>console.log(json))
+    const url = `/api/menu/${menu}/articles/`;
+    fetch_api(url, 'post', false, {}, JSON.stringify({name: title, content: content||''})).then(json=>console.log(json))
   }
 };
 
 export const actions = {
-  get_articles
+  new_article,
 };
 
 // ------------------------------------

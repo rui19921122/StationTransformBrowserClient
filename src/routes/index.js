@@ -5,20 +5,22 @@ import FileModuleHome from './FileModuleHome'
 import CounterRoute from './Counter'
 import FileModuleList from './FileModuleList'
 import AddArticle from './AddArticle'
+import EditArticle from './EditArticle'
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-	path: '/',
-	component: CoreLayout,
-	indexRoute: Home,
-	childRoutes: [
-		CounterRoute(store),
-		FileModuleHome(store),
-		FileModuleList(store),
-		AddArticle(store),
-	]
+  path: '/',
+  component: CoreLayout,
+  indexRoute: Home,
+  childRoutes: [
+    CounterRoute(store),
+    FileModuleHome(store),
+    FileModuleList(store),
+    AddArticle(store),
+    EditArticle(store)
+  ]
 });
 
 /*  Note: childRoutes can be chunked or otherwise loaded programmatically

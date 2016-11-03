@@ -2,12 +2,14 @@ import {Form, Button, Select, Input, Icon, Cascader} from 'antd';
 import * as React from 'react';
 import {MenuStoreInterface, actions as menu_actions} from '../../../store/global_reducers/menu';
 import {FormComponent, ComponentDecorator} from "antd/lib/form/Form";
-import {actions} from './../modules/reducer'
+import {actions, EditArticleInterface} from './../modules/reducer'
 import {Editor} from '../../../components/Editor/editor'
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
-  form?: any
+  form?: any,
+  article_id: string,
+  edit_article: EditArticleInterface
 }
 const FormItem = Form.Item;
 
@@ -54,7 +56,7 @@ class ArticleForm extends React.Component<props,any> {
         const content = values.content;
         const title = values.title;
         const menu_id = menu_list[menu_list.length - 1];
-        this.props.dispatch(actions.new_article(title, menu_id, content));
+        this.props.dispatch(actions.put_article(title, parseInt(this.props.article_id), content));
         console.log(menu_id)
       });
     };
@@ -64,43 +66,46 @@ class ArticleForm extends React.Component<props,any> {
       wrapperCol: {span: 8},
     };
     return (
-      <Form onSubmit={handleSubmit}
-            horizontal
-      >
-        <FormItem
-          {...formItemLayout}
-          label="标题"
+      this.props.edit_article.article.id ?
+        <Form onSubmit={handleSubmit}
+              horizontal
         >
-          {getFieldDecorator('title', {
-            rules: [{required: true, message: '请输入标题'}],
-          })(
-            <Input type="text" placeholder="标题"
-                   autoComplete={'off'}
-            />
-          )}
-        </FormItem>
-        <FormItem label="目录"
-          {...formItemLayout}>
-          {getFieldDecorator('menu', {
-            rules: [{required: true, message: '请选择目录', type: 'array'}],
-          })(
-            <Cascader options={options}/>
-          )}
-        </FormItem>
-        <FormItem
-          label="内容"
-        >
-          {getFieldDecorator('content', {})(
-            <Editor />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button type="primary" htmlType="submit" className="login-form-button">
-            提交
-          </Button>
-          <span>  </span>附件上传需提交后才再上传
-        </FormItem>
-      </Form>
+          <FormItem
+            {...formItemLayout}
+            label="标题"
+          >
+            {getFieldDecorator('title', {
+              initialValue: this.props.edit_article.article.name,
+              rules: [{required: true, message: '请输入标题'}],
+            })(
+              <Input type="text" placeholder="标题"
+                     autoComplete={'off'}
+              />
+            )}
+          </FormItem>
+          <FormItem label="目录"
+            {...formItemLayout}>
+            {getFieldDecorator('menu', {
+              initialValue: this.props.edit_article.article.menu
+            })(
+              <Input
+                disabled={true}
+              />
+            )}
+          </FormItem>
+          <FormItem
+            label="内容"
+          >
+            {getFieldDecorator('content', {})(
+              <Editor initial_value={this.props.edit_article.article.content}/>
+            )}
+          </FormItem>
+          <FormItem>
+            <Button type="primary" htmlType="submit" className="login-form-button">
+              提交
+            </Button>
+          </FormItem>
+        </Form>:<div>loading</div>
     )
   }
 }
