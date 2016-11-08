@@ -67,7 +67,7 @@ class ArticleForm extends React.Component<props,any> {
             wrapperCol: {span: 17},
         };
         return (
-            this.props.edit_article.article.id ?
+          (this.props.edit_article.article && this.props.edit_article.article.id ?
                 <div>
                     <Form onSubmit={handleSubmit}
                           horizontal
@@ -99,7 +99,9 @@ class ArticleForm extends React.Component<props,any> {
                             label="内容"
                         >
                             {getFieldDecorator('content', {})(
-                                <Editor initial_value={this.props.edit_article.article.content}/>
+                                <Editor initial_value={this.props.edit_article.article.content}
+                                        key={this.props.article_id}
+                                />
                             )}
                         </FormItem>
                         <FormItem>
@@ -113,6 +115,12 @@ class ArticleForm extends React.Component<props,any> {
                             </Button>
                             <Upload
                                 action={`/api/article/${this.props.article_id}/files/`}
+                                showUploadList={false}
+                                onChange={(info)=>{
+                                if(info.file.status=='done'){
+                                this.props.dispatch(actions.reload_files(parseInt(this.props.article_id)))
+                                }
+                                }}
                             >
                                 <Button type="ghost"
                                         size="large"
@@ -123,6 +131,7 @@ class ArticleForm extends React.Component<props,any> {
                         </FormItem>
                     </Form>
                     <EditFileTable
+                        article_id={parseInt(this.props.article_id)}
                         dispatch={this.props.dispatch}
                         article={this.props.edit_article}
                     />

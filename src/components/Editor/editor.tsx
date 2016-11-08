@@ -17,11 +17,15 @@ export class Editor extends React.Component<any,any> {
       );
     }
   };
+  componentDidMount(){
+    console.log(555)
+  }
 
   render() {
 
     return (
       <RichTextEditor
+        key={this.props.article_id+'editor'}
         editorClassName="editor-display"
         value={this.state.value}
         onChange={this.onChange}

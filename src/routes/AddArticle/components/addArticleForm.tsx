@@ -1,4 +1,4 @@
-import {Form, Button, Select, Input, Icon, Cascader, Select} from 'antd';
+import {Form, Button, Select, Input, Icon, Cascader} from 'antd';
 import * as React from 'react';
 import {MenuStoreInterface, actions as menu_actions} from '../../../store/global_reducers/menu';
 import {FormComponent, ComponentDecorator} from "antd/lib/form/Form";
@@ -63,10 +63,11 @@ class ArticleForm extends React.Component<props,any> {
                 <FormItem label="目录"
                     {...formItemLayout}>
                     {getFieldDecorator('menu', {
-                        rules: [{required: true, message: '请选择目录', type: 'number'}],
+                        rules: [{required: true, message: '请选择目录', type: 'string'}],
                     })(
                         <Select >{this.props.menu.list.map(value=><Option
-                            value={value.id}>{value.name}</Option>)}</Select>
+                          key={value.id+'select'}
+                            value={value.id.toString()}>{value.name}</Option>)}</Select>
                     )}
                 </FormItem>
                 <FormItem

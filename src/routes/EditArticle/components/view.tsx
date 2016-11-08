@@ -16,10 +16,7 @@ const RangePicker = (DatePicker as any).RangePicker;
 
 export class FileModuleListView extends React.Component<props,any> {
   componentDidMount() {
-    if (this.props.menu && this.props.menu.list.length > 0) {
-    } else {
-      this.props.dispatch(reducer_actions.check_permission(this.props.params.id))
-    }
+    this.props.dispatch(reducer_actions.check_permission(this.props.params.id))
   }
 
   render() {

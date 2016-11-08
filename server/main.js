@@ -15,7 +15,9 @@ app.use(require('connect-history-api-fallback')())
 // proxy middleware options - Enable api-proxy if it has been enabled in the config.
 if (config.proxy && config.proxy.enabled) {
   const apiProxy = proxy('/api', {target: config.proxy.options.host});
-  app.use(apiProxy)
+  const mediaProxy = proxy('/media', {target: config.proxy.options.host});
+  app.use(apiProxy);
+  app.use(mediaProxy)
 }
 
 // ------------------------------------

@@ -16,11 +16,7 @@ const editModalForm_1 = require('./editModalForm');
 const RangePicker = antd_1.DatePicker.RangePicker;
 class FileModuleListView extends React.Component {
     componentDidMount() {
-        if (this.props.menu && this.props.menu.list.length > 0) {
-        }
-        else {
-            this.props.dispatch(reducer_1.actions.check_permission(this.props.params.id));
-        }
+        this.props.dispatch(reducer_1.actions.check_permission(this.props.params.id));
     }
     render() {
         return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({}, this.props), React.createElement(antd_1.Row, {type: "flex", justify: "center"}, React.createElement("h1", null, "修改文章")), React.createElement(antd_1.Row, {type: "flex", justify: "start"}, React.createElement(antd_1.Col, {span: 16, offset: 2}, React.createElement(editModalForm_1.ArticleFormComponent, {dispatch: this.props.dispatch, menu: this.props.menu, article_id: this.props.params.id, edit_article: this.props.edit_article})))));

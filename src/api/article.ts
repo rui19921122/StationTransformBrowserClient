@@ -6,8 +6,12 @@ export interface ArticleDetailInterface {
   name: string,
   create_person: string,
   create_time: string,
-  files: {id: number,name: string,file: string,create_time: string,create_person: number}[],
-  content:string,
+  files: FileInterface[],
+  content: string,
   menu: string,
   url: string
+}
+
+export interface FileInterface {
+  id: number,name: string,file: string,create_time: string,create_person: number
 }
