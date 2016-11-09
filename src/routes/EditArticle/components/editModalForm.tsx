@@ -67,7 +67,7 @@ class ArticleForm extends React.Component<props,any> {
             wrapperCol: {span: 17},
         };
         return (
-          (this.props.edit_article.article && this.props.edit_article.article.id ?
+          this.props.edit_article.article && this.props.edit_article.article.id ?
                 <div>
                     <Form onSubmit={handleSubmit}
                           horizontal

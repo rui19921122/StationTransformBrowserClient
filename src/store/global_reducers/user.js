@@ -12,10 +12,10 @@ exports.update_fetching = redux_actions_1.createAction("update_fetching");
 exports.update_user = () => {
     return (dispatch, getState) => {
         dispatch(exports.update_fetching(true));
-        http_1.default('/api/auth/user/', 'get').then(json => {
+        http_1.default('/api/auth/user/', 'get', true).then(json => {
             dispatch(exports.update_fetching(false));
             dispatch(exports.update_user_info(json));
-        });
+        }).catch(console.log(111), dispatch(exports.update_fetching(false)));
     };
 };
 exports.login = (username, password) => {
@@ -24,7 +24,7 @@ exports.login = (username, password) => {
         http_1.default('/api/auth/login/', 'post', false, {}, JSON.stringify({ username: username, password: password })).then(json => {
             dispatch(exports.update_fetching(false));
             dispatch(exports.update_user());
-        });
+        }).catch(dispatch(exports.update_fetching(false)));
     };
 };
 exports.actions = {
