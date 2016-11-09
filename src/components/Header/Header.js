@@ -8,8 +8,17 @@ const react_router_1 = require('react-router');
 require('./Header.scss');
 const SubMenu = antd_1.Menu.SubMenu;
 const Item = antd_1.Menu.Item;
-exports.Header = () => {
-    return (React.createElement("header", {id: "header"}, React.createElement(antd_1.Row, {className: "global-header", type: "flex", align: "middle"}, React.createElement(antd_1.Col, {span: 4, className: "title"}, React.createElement("h1", null, "Test")), React.createElement(antd_1.Col, {span: 15}, React.createElement(antd_1.Menu, {mode: "horizontal", id: "nav"}, React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "/file-module-list/"}, React.createElement("span", null, "test1"))), React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "#"}, "模块名称1")), React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "#"}, "模块名称1")))))));
-};
+const user_1 = require('../../store/global_reducers/user');
+const LoginInForm_1 = require('./LoginInForm');
+class Header extends React.Component {
+    componentDidMount() {
+        this.props.dispatch(user_1.actions.update_user());
+    }
+    render() {
+        return (React.createElement("header", {id: "header"}, React.createElement(antd_1.Row, {className: "global-header", type: "flex", align: "middle"}, React.createElement(antd_1.Col, {span: 4, className: "title"}, React.createElement("h1", null, "Test")), React.createElement(antd_1.Col, {span: 9}, this.props.user.name ? `欢迎您，${this.props.user.name}` :
+            React.createElement(LoginInForm_1.default, {user: this.props.user, dispatch: this.props.dispatch})), React.createElement(antd_1.Col, {span: 11}, React.createElement(antd_1.Menu, {mode: "horizontal", id: "nav"}, React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "/file-module-list/"}, React.createElement("span", null, "文件管理"))), React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "#"}, "模块名称1")), React.createElement(Item, null, React.createElement(react_router_1.Link, {to: "#"}, "模块名称1")))))));
+    }
+}
+exports.Header = Header;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = exports.Header;
+exports.default = Header;
