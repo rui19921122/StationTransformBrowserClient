@@ -127,7 +127,7 @@ webpackConfig.module.loaders.push({
 		'style',
 		BASE_CSS_LOADER,
 		'postcss',
-		'less?sourceMap'
+		'less'
 	]
 })
 webpackConfig.module.loaders.push({

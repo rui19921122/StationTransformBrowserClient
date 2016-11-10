@@ -31,13 +31,9 @@ const config = {
 	// ----------------------------------
 	compiler_babel: {
 		cacheDirectory: true,
-		plugins: ['transform-runtime',['antd',
-			{
-				style: true,
-				libraryDirectory: "component",  // default: lib
-				libraryName: "antd",            // default: antd
-			}
-		]],
+		plugins: ['transform-runtime',
+			['import', {'libraryName': 'antd', 'style': true}]
+		],
 		presets: ['es2015', 'react', 'stage-0']
 	},
 	compiler_devtool: 'source-map',
