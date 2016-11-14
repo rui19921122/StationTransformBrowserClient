@@ -1,16 +1,6 @@
 {
   "dependencies": {
-    "react": "registry:npm/react#15.0.1+20160601175240",
-    "react-redux": "registry:npm/react-redux#4.4.0+20160614222153",
-    "react-router": "registry:npm/react-router#2.4.0+20160915183637"
   },
   "globalDependencies": {
-    "antd": "registry:dt/antd#0.12.10+20160326114918",
-    "draft-js": "registry:dt/draft-js#0.7.0+20160728135642",
-    "isomorphic-fetch": "registry:dt/isomorphic-fetch#0.0.0+20160830175641",
-    "rc-select": "registry:dt/rc-select#5.9.0+20160316155526",
-    "react": "registry:dt/react#0.14.0+20161008064207",
-    "react-router-redux": "registry:dt/react-router-redux#4.0.0+20160930121107",
-    "redux-actions": "registry:dt/redux-actions#0.8.0+20161006171701"
   }
 }
