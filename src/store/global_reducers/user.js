@@ -2,8 +2,8 @@
  * Created by Administrator on 2016/10/28.
  */
 "use strict";
-const http_1 = require("./../../http/http");
-const redux_actions_1 = require("redux-actions");
+const http_1 = require('./../../http/http');
+const redux_actions_1 = require('redux-actions');
 // ------------------------------------
 // Constants
 // ------------------------------------

@@ -2,9 +2,9 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-const http_1 = require("../../../http/http");
-const antd_1 = require("antd");
-const redux_actions_1 = require("redux-actions");
+const http_1 = require('../../../http/http');
+const antd_1 = require('antd');
+const redux_actions_1 = require('redux-actions');
 // ------------------------------------
 // Actions
 // ------------------------------------

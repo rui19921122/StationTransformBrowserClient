@@ -4,7 +4,7 @@
 "use strict";
 const http_1 = require("./../../http/http");
 const redux_actions_1 = require("redux-actions");
-const antd_1 = require("antd");
+const antd_1 = require('antd');
 // ------------------------------------
 // Constants
 // ------------------------------------

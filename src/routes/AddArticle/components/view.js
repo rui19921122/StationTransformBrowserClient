@@ -7,12 +7,12 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-const React = require("react");
-require("./components.scss");
-const FileModuleLayout_1 = require("../../../layouts/FileModuleLayout/FileModuleLayout");
-const antd_1 = require("antd");
+const React = require('react');
+require('./components.scss');
+const FileModuleLayout_1 = require('../../../layouts/FileModuleLayout/FileModuleLayout');
+const antd_1 = require('antd');
 const menu_1 = require("../../../store/global_reducers/menu");
-const addArticleForm_1 = require("./addArticleForm");
+const addArticleForm_1 = require('./addArticleForm');
 const RangePicker = antd_1.DatePicker.RangePicker;
 class FileModuleListView extends React.Component {
     componentDidMount() {
@@ -24,12 +24,15 @@ class FileModuleListView extends React.Component {
         // this.props.dispatch(article_actions.get_articles(0));
     }
     render() {
-        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({}, this.props),
-            React.createElement(antd_1.Row, { type: "flex", justify: "center" },
-                React.createElement("h1", null, "\u6DFB\u52A0\u6587\u7AE0")),
-            React.createElement(antd_1.Row, { type: "flex", justify: "start" },
-                React.createElement(antd_1.Col, { span: 16, offset: 2 },
-                    React.createElement(addArticleForm_1.ArticleFormComponent, __assign({}, this.props))))));
+        return (React.createElement(FileModuleLayout_1.FileModuleLayout, __assign({}, this.props), 
+            React.createElement(antd_1.Row, {type: "flex", justify: "center"}, 
+                React.createElement("h1", null, "添加文章")
+            ), 
+            React.createElement(antd_1.Row, {type: "flex", justify: "start"}, 
+                React.createElement(antd_1.Col, {span: 16, offset: 2}, 
+                    React.createElement(addArticleForm_1.ArticleFormComponent, __assign({}, this.props))
+                )
+            )));
     }
 }
 exports.FileModuleListView = FileModuleListView;
