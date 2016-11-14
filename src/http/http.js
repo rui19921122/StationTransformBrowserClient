@@ -2,10 +2,10 @@
 /**
  * Created by Administrator on 2016/10/23.
  */
-const antd_1 = require('antd');
-const es6_promise_1 = require('es6-promise');
-es6_promise_1.polyfill();
-require('isomorphic-fetch');
+const antd_1 = require("antd");
+// import {polyfill} from 'es6-promise';
+// polyfill();
+require("isomorphic-fetch");
 const fetch_api = (url, method, handle_exception = false, params, data, is_fetching, is_json) => {
     is_fetching = true;
     return new Promise((resolve, reject) => {
@@ -20,6 +20,7 @@ const fetch_api = (url, method, handle_exception = false, params, data, is_fetch
         }).then(res => {
             is_fetching = false;
             if (handle_exception) {
+                resolve(res);
             }
             else {
                 if (res.status <= 300) {

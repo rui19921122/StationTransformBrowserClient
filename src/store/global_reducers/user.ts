@@ -8,21 +8,21 @@ import {createAction, handleActions} from 'redux-actions'
 // Constants
 // ------------------------------------
 export const update_user_info = createAction("UPDATE_USER_INFO");
-export const update_fetching = createAction("update_fetching")
+export const update_fetching = createAction("update_fetching");
 
 export const update_user = () => {
     return (dispatch, getState) => {
         dispatch(update_fetching(true));
         fetch_api(
-            '/api/auth/user/', 'get',true
-        ).then(json=> {
-            dispatch(update_fetching(false))
-            dispatch(update_user_info(json))
-        }).catch(
-            console.log(111)
-            dispatch(update_fetching(false))
-        )
-
+            '/api/auth/user/', 'get', true
+        ).then(res=> {
+            if (res.status === 200) {
+                dispatch(update_fetching(false));
+                res.json().then(json=>dispatch(update_user_info(json)))
+            } else {
+                dispatch(update_fetching(false))
+            }
+        })
     }
 };
 export const login = (username: string, password: string) => {
@@ -31,8 +31,8 @@ export const login = (username: string, password: string) => {
         fetch_api(
             '/api/auth/login/', 'post', false, {}, JSON.stringify({username, password})
         ).then(json=> {
-                dispatch(update_fetching(false))
-                dispatch(update_user())
+                dispatch(update_user());
+                dispatch(update_fetching(false));
             }
         ).catch(
             dispatch(update_fetching(false))

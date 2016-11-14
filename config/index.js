@@ -31,7 +31,8 @@ const config = {
 	// ----------------------------------
 	compiler_babel: {
 		cacheDirectory: true,
-		plugins: ['transform-runtime',
+		plugins: [
+			'transform-runtime',
 			['import', {'libraryName': 'antd', 'style': true}]
 		],
 		presets: ['es2015', 'react', 'stage-0']
@@ -47,11 +48,11 @@ const config = {
 		colors: true
 	},
 	compiler_vendors: [
+		'babel-polyfill',
 		'react',
 		'react-redux',
 		'react-router',
 		'redux',
-		'antd'
 	],
 
 	// ----------------------------------
