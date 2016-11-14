@@ -4,15 +4,14 @@
     "target": "es6",
     "noImplicitAny": false,
     "sourceMap": false,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "jsx": "react"
   },
   "compileOnSave": true,
   "exclude": [
-    "node_modules",
-    "typings",
     "dist",
-    "node_modules/antd"
+    "typings"
+  ],
+  "files": [
+    "typings/index"
   ]
 }
