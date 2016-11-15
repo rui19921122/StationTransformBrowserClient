@@ -77,6 +77,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/draft-js": "^0.7.33",
+    "@types/isomorphic-fetch": "0.0.31",
     "@types/react": "^0.14.48",
     "@types/react-redux": "^4.4.32",
     "@types/react-router-redux": "^4.0.34",
@@ -119,6 +120,7 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "typescript": "^2.2.0-dev.20161115",
     "url-loader": "^0.5.6",
     "webpack": "^1.12.14",
     "yargs": "^6.3.0"

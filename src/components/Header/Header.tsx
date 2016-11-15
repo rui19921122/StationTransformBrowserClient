@@ -21,7 +21,8 @@ export class Header extends React.Component<props,any> {
 
   render() {
     return (<header id="header">
-      <Row className="global-header" type="flex" align="middle">
+      <Row className="global-header" type="flex" align="middle"
+      >
         <Col span={4} className="title">
           <h1>Test</h1>
         </Col>

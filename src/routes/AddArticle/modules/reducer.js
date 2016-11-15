@@ -1,37 +1,23 @@
-"use strict";
-// ------------------------------------
-// Constants
-// ------------------------------------
-var http_1 = require('../../../http/http');
-var redux_actions_1 = require('redux-actions');
-var react_router_redux_1 = require('react-router-redux');
-// ------------------------------------
-// Actions
-// ------------------------------------
-var update_articles = redux_actions_1.createAction('update_articles');
-exports.new_article = function (title, menu, content) {
-    return function (dispatch, getState) {
-        var url = "/api/menu/" + menu + "/articles/";
-        http_1.default(url, 'post', false, {}, JSON.stringify({ name: title, content: content || '' }))
-            .then(function (json) { return dispatch(react_router_redux_1.push("/article/" + json['id'] + "/edit/")); });
+import fetch_api from '../../../http/http';
+import { createAction, handleActions } from 'redux-actions';
+import { push } from 'react-router-redux';
+const update_articles = createAction('update_articles');
+export const new_article = (title, menu, content) => {
+    return (dispatch, getState) => {
+        const url = `/api/menu/${menu}/articles/`;
+        fetch_api(url, 'post', false, {}, JSON.stringify({ name: title, content: content || '' }))
+            .then(json => dispatch(push(`/article/${json['id']}/edit/`)));
     };
 };
-exports.actions = {
-    new_article: exports.new_article,
+export const actions = {
+    new_article,
 };
-// ------------------------------------
-// Action Handlers
-// ------------------------------------
-// ------------------------------------
-// Reducer
-// ------------------------------------
-var initialState = {
+const initialState = {
     fetching: false,
     articles: []
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = redux_actions_1.handleActions({
-    update_articles: function (state, action) {
+export default handleActions({
+    update_articles: (state, action) => {
         return Object.assign({}, state, action.payload);
     }
 }, initialState);

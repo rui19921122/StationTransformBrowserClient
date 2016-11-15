@@ -1,11 +1,9 @@
-"use strict";
-const react_redux_1 = require('react-redux');
-const view_1 = require('../components/view');
+import { connect } from 'react-redux';
+import View from '../components/view';
 const mapStateToProps = (state) => ({
     menu: state.menu,
     articles: state.articles,
     location: state.location
 });
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = react_redux_1.connect(mapStateToProps)(view_1.default);
+export default connect(mapStateToProps)(View);
 //# sourceMappingURL=container.js.map
