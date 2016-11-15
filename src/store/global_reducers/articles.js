@@ -1,6 +1,6 @@
 import fetch_api from "./../../http/http";
 import { createAction, handleActions } from "redux-actions";
-import { url_function } from '../../url/url';
+import { url_function } from 'src/url/url';
 export const change_store_without_api = createAction("change_store_without_api");
 export const get_articles = (pk, content, start, end) => {
     return (dispatch, getState) => {

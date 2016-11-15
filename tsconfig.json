@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "strictNullChecks": true,
+    "baseUrl": "./",
     "moduleResolution": "node",
     "target": "es6",
     "noImplicitAny": false,
