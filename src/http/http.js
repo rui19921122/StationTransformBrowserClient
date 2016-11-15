@@ -2,13 +2,14 @@
 /**
  * Created by Administrator on 2016/10/23.
  */
-const antd_1 = require('antd');
+var antd_1 = require('antd');
 // import {polyfill} from 'es6-promise';
 // polyfill();
 require('isomorphic-fetch');
-const fetch_api = (url, method, handle_exception = false, params, data, is_fetching, is_json) => {
+var fetch_api = function (url, method, handle_exception, params, data, is_fetching, is_json) {
+    if (handle_exception === void 0) { handle_exception = false; }
     is_fetching = true;
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
         fetch(url, {
             method: method,
             credentials: 'include',
@@ -17,20 +18,20 @@ const fetch_api = (url, method, handle_exception = false, params, data, is_fetch
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             }
-        }).then(res => {
+        }).then(function (res) {
             is_fetching = false;
             if (handle_exception) {
                 resolve(res);
             }
             else {
                 if (res.status <= 300) {
-                    res.json().then(json => resolve(json)).catch(e => resolve(res.body));
+                    res.json().then(function (json) { return resolve(json); }).catch(function (e) { return resolve(res.body); });
                 }
                 else {
-                    res.json().then(json => antd_1.message.error(`请求失败，错误代码为${res.status}，原因为${JSON.stringify(json)}`)).catch(text => antd_1.message.error(text.toString()));
+                    res.json().then(function (json) { return antd_1.message.error("\u8BF7\u6C42\u5931\u8D25\uFF0C\u9519\u8BEF\u4EE3\u7801\u4E3A" + res.status + "\uFF0C\u539F\u56E0\u4E3A" + JSON.stringify(json)); }).catch(function (text) { return antd_1.message.error(text.toString()); });
                 }
             }
-        }).catch(err => {
+        }).catch(function (err) {
             antd_1.message.error("发生错误" + err);
             reject(err);
         });
@@ -38,3 +39,4 @@ const fetch_api = (url, method, handle_exception = false, params, data, is_fetch
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = fetch_api;
+//# sourceMappingURL=http.js.map

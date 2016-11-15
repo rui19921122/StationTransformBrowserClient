@@ -19,7 +19,7 @@ class ArticleForm extends React.Component<props,any> {
 
 
   render() {
-    const get_node_name = (id: number)=> {
+    const get_node_name = (id: number) => {
       for (let num of this.props.menu.list) {
         if (num.id == id) {
           return {name: num.name, url: num.url}
@@ -27,9 +27,9 @@ class ArticleForm extends React.Component<props,any> {
       }
     };
 
-    const handleSubmit = (e)=> {
+    const handleSubmit = (e) => {
       e.preventDefault();
-      this.props.form.validateFields((err, values)=> {
+      this.props.form.validateFields((err, values) => {
         if (err) {
           return
         }
@@ -66,7 +66,7 @@ class ArticleForm extends React.Component<props,any> {
           {getFieldDecorator('menu', {
             rules: [{required: true, message: '请选择目录', type: 'string'}],
           })(
-            <Select >{this.props.menu.list.map(value=><Option
+            <Select >{this.props.menu.list.map(value =><Option
               key={value.id+'select'}
               value={value.id.toString()}>{value.name}</Option>)}</Select>
           )}

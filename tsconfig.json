@@ -1,17 +1,21 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "strictNullChecks": true,
+    "moduleResolution": "node",
     "target": "es6",
     "noImplicitAny": false,
-    "sourceMap": false,
-    "jsx": "react"
+    "sourceMap": true,
+    "jsx": "preserve",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true
   },
   "compileOnSave": true,
   "exclude": [
     "dist",
-    "typings"
+    "typings",
+    "node_modules"
   ],
   "files": [
-    "typings/index"
+    "typings/index.d.ts"
   ]
 }

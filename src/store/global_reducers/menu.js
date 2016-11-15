@@ -2,23 +2,23 @@
  * Created by Administrator on 2016/10/28.
  */
 "use strict";
-const http_1 = require("./../../http/http");
-const redux_actions_1 = require("redux-actions");
-const antd_1 = require('antd');
+var http_1 = require("./../../http/http");
+var redux_actions_1 = require("redux-actions");
+var antd_1 = require('antd');
 // ------------------------------------
 // Constants
 // ------------------------------------
 exports.change_store_without_api = redux_actions_1.createAction("change_store_without_api");
 exports.update_menu_info = redux_actions_1.createAction("update_menu_info");
 exports.change_add_fetching = redux_actions_1.createAction("change_add_fetching");
-exports.update_menu = () => {
-    return (dispatch, getState) => {
-        http_1.default('/api/menu/', 'get').then(json => dispatch(exports.update_menu_info(json)));
+exports.update_menu = function () {
+    return function (dispatch, getState) {
+        http_1.default('/api/menu/', 'get').then(function (json) { return dispatch(exports.update_menu_info(json)); });
     };
 };
-exports.add_menu = (content, parent) => {
-    return (dispatch, getState) => {
-        let url;
+exports.add_menu = function (content, parent) {
+    return function (dispatch, getState) {
+        var url;
         if (!parent) {
             url = '/api/menu/';
         }
@@ -27,7 +27,7 @@ exports.add_menu = (content, parent) => {
         }
         parent ? dispatch(exports.change_add_fetching(true)) :
             dispatch(exports.change_store_without_api(['adding_root_fetching', true]));
-        http_1.default(url, 'post', false, {}, JSON.stringify({ name: content })).then(json => {
+        http_1.default(url, 'post', false, {}, JSON.stringify({ name: content })).then(function (json) {
             if (parent) {
                 dispatch(exports.change_add_fetching(false));
             }
@@ -36,22 +36,22 @@ exports.add_menu = (content, parent) => {
                 dispatch(exports.change_store_without_api(['adding_content', '']));
             }
             return dispatch(exports.update_menu());
-        }).catch(e => dispatch(exports.change_add_fetching(false)));
+        }).catch(function (e) { return dispatch(exports.change_add_fetching(false)); });
     };
 };
-exports.delete_menu = (id) => {
-    return (dispatch, getState) => {
-        let url = `/api/menu/${id}/`;
+exports.delete_menu = function (id) {
+    return function (dispatch, getState) {
+        var url = "/api/menu/" + id + "/";
         antd_1.Modal.confirm({
             'title': '您确认要删除这个目录吗',
             'content': '该目录下的所有文章及子目录均会被删除,请确认无误后再删除',
-            onOk: () => {
-                http_1.default(url, 'delete').then(json => {
+            onOk: function () {
+                http_1.default(url, 'delete').then(function (json) {
                     antd_1.message.success("删除成功");
                     dispatch(exports.update_menu());
                 });
             },
-            onCancel: () => {
+            onCancel: function () {
             }
         });
         // parent ? dispatch(change_add_fetching(true)) :
@@ -69,7 +69,7 @@ exports.delete_menu = (id) => {
         // }).catch(e=>dispatch(change_add_fetching(false)))
     };
 };
-let initial_state = {
+var initial_state = {
     list: [],
     sort: [],
     managed: [],
@@ -91,7 +91,7 @@ exports.actions = {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = redux_actions_1.handleActions({
-    update_menu_info: (state, action) => {
+    update_menu_info: function (state, action) {
         return Object.assign({}, state, {
             list: action.payload['items'],
             sort: action.payload['sort'],
@@ -99,14 +99,15 @@ exports.default = redux_actions_1.handleActions({
             root_managed: action.payload['root_managed']
         });
     },
-    change_add_fetching: (state, action) => {
+    change_add_fetching: function (state, action) {
         return Object.assign({}, state, { add_fetching: action.payload });
     },
-    change_store_without_api: (state, action) => {
-        const type = action.payload[0];
-        const payload = action.payload[1];
-        let _new = {};
+    change_store_without_api: function (state, action) {
+        var type = action.payload[0];
+        var payload = action.payload[1];
+        var _new = {};
         _new['' + type] = payload;
         return Object.assign({}, state, _new);
     }
 }, initial_state);
+//# sourceMappingURL=menu.js.map

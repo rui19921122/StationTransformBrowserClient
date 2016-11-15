@@ -3,7 +3,7 @@ import {Dropdown, Menu, Icon, Input, Button} from 'antd';
 const Item = Menu.Item;
 import './style.scss'
 import {Dispatch} from "redux";
-import {actions, MenuStoreInterface} from '../../store/global_reducers/menu'
+import {actions, MenuStoreInterface} from 'src/store/global_reducers/menu'
 interface props {
   dispatch: any,
   menu: MenuStoreInterface
@@ -39,7 +39,7 @@ class MenuDropDown extends React.Component<props,any> {
       }
       return
     };
-    const handleSubmitButtonClick = (e)=> {
+    const handleSubmitButtonClick = (e) => {
       this.props.dispatch(actions.add_menu(this.state.content, this.props.menu_id));
       e.stopPropagation()
     };

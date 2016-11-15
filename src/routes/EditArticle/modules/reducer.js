@@ -1,18 +1,12 @@
 "use strict";
-// ------------------------------------
-// Constants
-// ------------------------------------
 const http_1 = require('../../../http/http');
 const antd_1 = require('antd');
 const redux_actions_1 = require('redux-actions');
-// ------------------------------------
-// Actions
-// ------------------------------------
 const update_article = redux_actions_1.createAction('update_article');
 const update_files = redux_actions_1.createAction('update_files');
 exports.check_permission = (id) => {
     return (dispatch, getState) => {
-        dispatch(update_article()); // 初始化
+        dispatch(update_article());
         const url = `/api/article/${id}/edit/`;
         http_1.default(url, 'get').then(json => dispatch(update_article(json)));
     };
@@ -54,12 +48,6 @@ exports.actions = {
     delete_file: exports.delete_file,
     reload_files: exports.reload_files
 };
-// ------------------------------------
-// Action Handlers
-// ------------------------------------
-// ------------------------------------
-// Reducer
-// ------------------------------------
 const initialState = {
     fetching: false,
     article: {}
@@ -75,3 +63,4 @@ exports.default = redux_actions_1.handleActions({
         return Object.assign({}, state, _article);
     }
 }, initialState);
+//# sourceMappingURL=reducer.js.map
