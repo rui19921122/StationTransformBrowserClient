@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {Table} from 'antd';
-import {actions, ArticleStoreInterface} from '../../store/global_reducers/articles';
+import {actions, ArticleStoreInterface} from "../../store/global_reducers/articles";
 import './style.scss'
-import { push } from 'react-router-redux';
+import {push} from 'react-router-redux';
 interface props {
   articles: ArticleStoreInterface;
   dispatch: any;
@@ -12,7 +12,7 @@ const columns = [
   {
     title: '序号',
     key: 'index',
-    render: (obj, array, index)=>index + 1,
+    render: (obj, array, index) => index + 1,
     width: '10%'
   },
   {
@@ -32,26 +32,26 @@ const columns = [
     key: 'time',
     dataIndex: 'create_time',
     width: '10%',
-    render: (obj)=> {
+    render: (obj) => {
       return obj.split('T')[0]
     }
   },
   {
     title: '所属菜单',
     key: 'menu',
-    render: (obj, array, index)=> {
+    render: (obj, array, index) => {
       return obj.menu || '回收站'
     },
     width: '15%'
   }, {
     title: '操作',
     key: 'operate',
-    render: (obj, array, index)=> {
+    render: (obj, array, index) => {
     },
     width: '20%'
   }
 ];
-export class ArticleTable extends React.Component<props,any> {
+export class ArticleTable extends React.Component<props,void> {
   render() {
     return (
       <Table

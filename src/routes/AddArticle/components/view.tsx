@@ -11,7 +11,7 @@ interface props {
 }
 const RangePicker = (DatePicker as any).RangePicker;
 
-export class FileModuleListView extends React.Component<props,any> {
+export class FileModuleListView extends React.Component<props,{}> {
   componentDidMount() {
     if (this.props.menu && this.props.menu.list.length > 0) {
     } else {

@@ -44,3 +44,4 @@ class FileModuleListView extends React.Component {
 exports.FileModuleListView = FileModuleListView;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = FileModuleListView;
+//# sourceMappingURL=view.js.map

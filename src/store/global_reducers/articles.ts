@@ -5,8 +5,8 @@
 
 import fetch_api from "./../../http/http";
 import {createAction, handleActions} from "redux-actions";
-import {ArticleDetailInterface} from "../../api/article";
-import {url_function} from '../../url/url'
+import {ArticleDetailInterface} from "src/api/article";
+import {url_function} from 'src/url/url'
 import {Modal, message} from 'antd';
 import * as moment from 'moment'
 // ------------------------------------

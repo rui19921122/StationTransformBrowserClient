@@ -1,40 +1,33 @@
-/**
- * Created by Administrator on 2016/10/28.
- */
-"use strict";
-const http_1 = require('./../../http/http');
-const redux_actions_1 = require('redux-actions');
-// ------------------------------------
-// Constants
-// ------------------------------------
-exports.update_user_info = redux_actions_1.createAction("UPDATE_USER_INFO");
-exports.update_fetching = redux_actions_1.createAction("update_fetching");
-exports.update_user = () => {
+import fetch_api from './../../http/http';
+import { createAction, handleActions } from 'redux-actions';
+export const update_user_info = createAction("UPDATE_USER_INFO");
+export const update_fetching = createAction("update_fetching");
+export const update_user = () => {
     return (dispatch, getState) => {
-        dispatch(exports.update_fetching(true));
-        http_1.default('/api/auth/user/', 'get', true).then(res => {
+        dispatch(update_fetching(true));
+        fetch_api('/api/auth/user/', 'get', true).then(res => {
             if (res.status === 200) {
-                dispatch(exports.update_fetching(false));
-                res.json().then(json => dispatch(exports.update_user_info(json)));
+                dispatch(update_fetching(false));
+                res.json().then(json => dispatch(update_user_info(json)));
             }
             else {
-                dispatch(exports.update_fetching(false));
+                dispatch(update_fetching(false));
             }
         });
     };
 };
-exports.login = (username, password) => {
+export const login = (username, password) => {
     return (dispatch, getState) => {
-        dispatch(exports.update_fetching(true));
-        http_1.default('/api/auth/login/', 'post', false, {}, JSON.stringify({ username, password })).then(json => {
-            dispatch(exports.update_user());
-            dispatch(exports.update_fetching(false));
-        }).catch(dispatch(exports.update_fetching(false)));
+        dispatch(update_fetching(true));
+        fetch_api('/api/auth/login/', 'post', false, {}, JSON.stringify({ username, password })).then(json => {
+            dispatch(update_user());
+            dispatch(update_fetching(false));
+        }).catch(dispatch(update_fetching(false)));
     };
 };
-exports.actions = {
-    update_user: exports.update_user,
-    login: exports.login
+export const actions = {
+    update_user,
+    login
 };
 const initialState = {
     name: undefined,
@@ -43,8 +36,7 @@ const initialState = {
     admin_menu: [],
     fetching: false
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = redux_actions_1.handleActions({
+export default handleActions({
     UPDATE_USER_INFO: (state, action) => {
         return Object.assign({}, state, {
             name: action.payload['username'],
@@ -57,3 +49,4 @@ exports.default = redux_actions_1.handleActions({
         return Object.assign({}, state, { fetching: action.payload });
     }
 }, initialState);
+//# sourceMappingURL=user.js.map

@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "strictNullChecks": true,
+    "baseUrl": "./",
+    "moduleResolution": "node",
     "target": "es6",
     "noImplicitAny": false,
-    "sourceMap": false,
-    "jsx": "react",
-    "moduleResolution": "node",
+    "sourceMap": true,
+    "jsx": "preserve",
+    "removeComments": true,
     "allowSyntheticDefaultImports": true
   },
   "compileOnSave": true,
+  "include":[
+    "src"
+  ],
   "exclude": [
-    "node_modules",
-    "typings",
     "dist",
-    "node_modules/antd"
+    "typings",
+    "node_modules"
+  ],
+  "files": [
+    "typings/index.d.ts"
   ]
 }
