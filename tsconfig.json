@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "strictNullChecks": true,
-    "baseUrl": "./",
-    "moduleResolution": "node",
-    "target": "es6",
-    "noImplicitAny": false,
     "sourceMap": true,
-    "jsx": "preserve",
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true
+    "module": "commonjs",
+    "target": "es6",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./src"
   },
   "compileOnSave": true,
-  "include":[
-    "src"
+  "include": [
+    "src/**/*"
   ],
   "exclude": [
     "dist",

@@ -1,57 +1,71 @@
-import fetch_api from '../../../http/http';
-import { message } from 'antd';
-import { createAction, handleActions } from 'redux-actions';
-const update_article = createAction('update_article');
-const update_files = createAction('update_files');
-export const check_permission = (id) => {
+"use strict";
+// ------------------------------------
+// Constants
+// ------------------------------------
+const http_1 = require("../../../http/http");
+const antd_1 = require("antd");
+const redux_actions_1 = require("redux-actions");
+// ------------------------------------
+// Actions
+// ------------------------------------
+const update_article = redux_actions_1.createAction('update_article');
+const update_files = redux_actions_1.createAction('update_files');
+exports.check_permission = (id) => {
     return (dispatch, getState) => {
-        dispatch(update_article());
+        dispatch(update_article()); // 初始化
         const url = `/api/article/${id}/edit/`;
-        fetch_api(url, 'get').then(json => dispatch(update_article(json)));
+        http_1.default(url, 'get').then(json => dispatch(update_article(json)));
     };
 };
-export const put_article = (title, article_id, content) => {
+exports.put_article = (title, article_id, content) => {
     return (dispatch, getState) => {
         const url = `/api/article/${article_id}/`;
-        fetch_api(url, 'put', false, {}, JSON.stringify({
+        http_1.default(url, 'put', false, {}, JSON.stringify({
             name: title,
             content: content || ''
         })).then(json => {
             dispatch(update_article(json));
-            message.success('更新成功');
+            antd_1.message.success('更新成功');
         });
     };
 };
-export const delete_file = (id, article_id) => {
+exports.delete_file = (id, article_id) => {
     return (dispatch, getState) => {
         const url = `/api/article/file/${id}/`;
         const state = getState();
-        fetch_api(url, 'delete').then(json => {
-            dispatch(reload_files(article_id));
-            message.success("删除成功");
+        http_1.default(url, 'delete').then(json => {
+            dispatch(exports.reload_files(article_id));
+            antd_1.message.success("删除成功");
         });
     };
 };
-export const reload_files = (id) => {
+exports.reload_files = (id) => {
     return (dispatch, getState) => {
         const url = `/api/article/${id}/files/`;
-        fetch_api(url, 'get').then(json => {
+        http_1.default(url, 'get').then(json => {
             dispatch(update_files(json));
         });
     };
 };
-export const actions = {
+exports.actions = {
     update_article,
-    check_permission,
-    put_article,
-    delete_file,
-    reload_files
+    check_permission: exports.check_permission,
+    put_article: exports.put_article,
+    delete_file: exports.delete_file,
+    reload_files: exports.reload_files
 };
+// ------------------------------------
+// Action Handlers
+// ------------------------------------
+// ------------------------------------
+// Reducer
+// ------------------------------------
 const initialState = {
     fetching: false,
     article: {}
 };
-export default handleActions({
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = redux_actions_1.handleActions({
     update_article: (state, action) => {
         return Object.assign({}, state, { article: action.payload });
     },

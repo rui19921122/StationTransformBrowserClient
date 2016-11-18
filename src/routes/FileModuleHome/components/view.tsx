@@ -1,16 +1,18 @@
-import * as React from 'react'
-import './components.scss'
-import {FileModuleLayout} from '../../../layouts/FileModuleLayout/FileModuleLayout';
-import {ArticleTable} from '../../../components/ArticleTable/ArticleTable';
-import {SearchToolBar} from '../../../components/SearchToolBar/SearchToolBar';
-import {Row, Col, DatePicker, Button, Input, Dropdown} from 'antd';
-import {MenuStoreInterface} from "../../../store/global_reducers/menu";
-import {ArticleStoreInterface, actions as article_actions} from "../../../store/global_reducers/articles";
+import * as React from "react";
+import "./components.scss";
+import {FileModuleLayout} from "layouts/FileModuleLayout/FileModuleLayout";
+import {ArticleTable} from "components/ArticleTable/ArticleTable";
+import {SearchToolBar} from "components/SearchToolBar/SearchToolBar";
+import {Row, Col, DatePicker} from "antd";
+import {MenuStoreInterface} from "store/global_reducers/menu";
+import {ArticleStoreInterface, actions as article_actions} from "store/global_reducers/articles";
+import {UserStoreInterface} from "store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
   articles: ArticleStoreInterface,
-  location: any
+  location: any,
+  user: UserStoreInterface
 }
 const RangePicker = (DatePicker as any).RangePicker;
 

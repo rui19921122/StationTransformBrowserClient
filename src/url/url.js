@@ -1,4 +1,5 @@
-export class url_function {
+"use strict";
+class url_function {
     constructor(url) {
         this.url = url;
         this.url = url;
@@ -29,4 +30,5 @@ export class url_function {
         return;
     }
 }
+exports.url_function = url_function;
 //# sourceMappingURL=url.js.map

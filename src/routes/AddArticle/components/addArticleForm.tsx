@@ -1,13 +1,14 @@
-import {Form, Button, Select, Input, Icon, Cascader} from 'antd';
-import * as React from 'react';
-import {MenuStoreInterface, actions as menu_actions} from '../../../store/global_reducers/menu';
-import {FormComponent, ComponentDecorator} from "antd/lib/form/Form";
-import {actions} from './../modules/reducer'
-import {Editor} from '../../../components/Editor/editor'
+import {Form, Button, Select, Input} from "antd";
+import * as React from "react";
+import {MenuStoreInterface} from "../../../store/global_reducers/menu";
+import {actions} from "./../modules/reducer";
+import {Editor} from "../../../components/Editor/editor";
+import {UserStoreInterface} from "store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
-  form?: any
+  form?: any,
+  user: UserStoreInterface
 }
 const FormItem = Form.Item;
 
@@ -68,6 +69,7 @@ class ArticleForm extends React.Component<props,any> {
           })(
             <Select >{this.props.menu.list.map(value =><Option
               key={value.id+'select'}
+              disabled={!((this.props.user.managed_menu as any).includes(value.id)||(this.props.user.admin_menu as any).includes(value.id))}
               value={value.id.toString()}>{value.name}</Option>)}</Select>
           )}
         </FormItem>

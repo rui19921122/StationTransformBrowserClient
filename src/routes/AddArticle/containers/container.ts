@@ -1,11 +1,9 @@
-import {connect} from 'react-redux'
-
+import {connect} from "react-redux";
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
  wiring in the actions and state necessary to render a presentational
  component - in this case, the counter:   */
-
-import View from '../components/view'
+import View from "../components/view";
 
 /*  Object of action creators (can also be function that returns object).
  Keys will be passed as props to presentational components. Here we are
@@ -14,7 +12,8 @@ import View from '../components/view'
 
 const mapStateToProps = (state) => ({
   menu: state.menu,
-  location: state.location
+  location: state.location,
+  user: state.user
 });
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

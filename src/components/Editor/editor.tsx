@@ -1,24 +1,21 @@
-import * as React from 'react';
-import RichTextEditor from 'react-rte';
-import './components.scss'
+import * as React from "react";
+import RichTextEditor from "react-rte";
+import "./components.scss";
 
 export class Editor extends React.Component<any,any> {
   state = {
-    value: this.props.initial_value?RichTextEditor.createValueFromString(this.props.initial_value,'html'):RichTextEditor.createEmptyValue()
+    value: this.props.initial_value ? RichTextEditor.createValueFromString(this.props.initial_value, 'html') : RichTextEditor.createEmptyValue()
   };
   onChange = (value) => {
     this.setState({value});
     if (this.props.onChange) {
-      // Send the changes up to the parent component as an HTML string.
-      // This is here to demonstrate using `.toString()` but in a real app it
-      // would be better to avoid generating a string on each change.
       this.props.onChange(
         value.toString('html')
       );
     }
   };
-  componentDidMount(){
-    console.log(555)
+
+  componentDidMount() {
   }
 
   render() {
@@ -29,6 +26,7 @@ export class Editor extends React.Component<any,any> {
         editorClassName="editor-display"
         value={this.state.value}
         onChange={this.onChange}
+        autoFocus={true}
       />
     );
   }

@@ -16,6 +16,7 @@ const mapStateToProps = (state) => ({
   menu: state.menu,
   location: state.location,
   edit_article:state.edit_article,
+  user:state.user
 });
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
