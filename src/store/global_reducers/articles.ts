@@ -5,8 +5,8 @@
 
 import fetch_api from "./../../http/http";
 import {createAction, handleActions} from "redux-actions";
-import {ArticleDetailInterface} from "src/api/article";
-import {url_function} from 'src/url/url'
+import {ArticleDetailInterface} from "api/article";
+import {url_function} from 'url/url'
 import {Modal, message} from 'antd';
 import * as moment from 'moment'
 // ------------------------------------
@@ -30,7 +30,7 @@ export const get_articles = (pk: number, content?: string, start?: moment.Moment
     dispatch(actions.change_store_without_api(['fetching_articles', true]));
     fetch_api(
       url.toString(), 'get'
-    ).then(json=> {
+    ).then(json => {
       dispatch(actions.change_store_without_api(
         ['articles', json]
       ));
@@ -63,8 +63,8 @@ let initial_state: ArticleStoreInterface = {
   articles: [],
   fetching_articles: false
 };
-export default handleActions({
-  change_store_without_api: (state, action)=> {
+export default handleActions<ArticleStoreInterface,any>({
+  change_store_without_api: (state, action) => {
     const type = action.payload[0];
     const payload = action.payload[1];
     let _new = {};

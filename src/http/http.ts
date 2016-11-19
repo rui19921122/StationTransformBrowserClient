@@ -1,10 +1,8 @@
 /**
  * Created by Administrator on 2016/10/23.
  */
-import {message} from 'antd'
-// import {polyfill} from 'es6-promise';
-// polyfill();
-import 'isomorphic-fetch'
+import {message} from "antd";
+import "isomorphic-fetch";
 const fetch_api = (url: string,
                    method: 'post'|'get'|'put'|'delete',
                    handle_exception: boolean = false,
@@ -30,7 +28,13 @@ const fetch_api = (url: string,
         if (res.status <= 300) {
           res.json().then(json => resolve(json)).catch(e => resolve(res.body))
         } else {
-          res.json().then(json => message.error(`请求失败，错误代码为${res.status}，原因为${JSON.stringify(json)}`)).catch(text => message.error(text.toString()));
+          res.json().then(json => {
+            message.error(`请求失败，错误代码为${res.status}，原因为${JSON.stringify(json)}`);
+            reject(json);
+          }).catch(text => {
+            message.error(text.toString());
+            reject(text);
+          });
         }
       }
     }).catch(err => {

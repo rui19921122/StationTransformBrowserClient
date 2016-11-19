@@ -1,15 +1,23 @@
-import fetch_api from "./../../http/http";
-import { createAction, handleActions } from "redux-actions";
-import { Modal, message } from 'antd';
-export const change_store_without_api = createAction("change_store_without_api");
-export const update_menu_info = createAction("update_menu_info");
-export const change_add_fetching = createAction("change_add_fetching");
-export const update_menu = () => {
+"use strict";
+/**
+ * Created by Administrator on 2016/10/28.
+ */
+const http_1 = require("./../../http/http");
+const redux_actions_1 = require("redux-actions");
+const antd_1 = require("antd");
+const user_1 = require("store/global_reducers/user");
+// ------------------------------------
+// Constants
+// ------------------------------------
+exports.change_store_without_api = redux_actions_1.createAction("change_store_without_api");
+exports.update_menu_info = redux_actions_1.createAction("update_menu_info");
+exports.change_add_fetching = redux_actions_1.createAction("change_add_fetching");
+exports.update_menu = () => {
     return (dispatch, getState) => {
-        fetch_api('/api/menu/', 'get').then(json => dispatch(update_menu_info(json)));
+        http_1.default('/api/menu/', 'get').then(json => dispatch(exports.update_menu_info(json)));
     };
 };
-export const add_menu = (content, parent) => {
+exports.add_menu = (content, parent) => {
     return (dispatch, getState) => {
         let url;
         if (!parent) {
@@ -18,35 +26,50 @@ export const add_menu = (content, parent) => {
         else {
             url = '/api/menu/' + parent + '/children/';
         }
-        parent ? dispatch(change_add_fetching(true)) :
-            dispatch(change_store_without_api(['adding_root_fetching', true]));
-        fetch_api(url, 'post', false, {}, JSON.stringify({ name: content })).then(json => {
+        parent ? dispatch(exports.change_add_fetching(true)) :
+            dispatch(exports.change_store_without_api(['adding_root_fetching', true]));
+        http_1.default(url, 'post', false, {}, JSON.stringify({ name: content })).then(json => {
             if (parent) {
-                dispatch(change_add_fetching(false));
+                dispatch(exports.change_add_fetching(false));
             }
             else {
-                dispatch(change_store_without_api(['adding_root_fetching', false]));
-                dispatch(change_store_without_api(['adding_content', '']));
+                dispatch(exports.change_store_without_api(['adding_root_fetching', false]));
+                dispatch(exports.change_store_without_api(['adding_content', '']));
             }
-            return dispatch(update_menu());
-        }).catch(e => dispatch(change_add_fetching(false)));
+            dispatch(user_1.actions.update_user());
+            dispatch(exports.update_menu());
+        }).catch(e => dispatch(exports.change_add_fetching(false)));
     };
 };
-export const delete_menu = (id) => {
+exports.delete_menu = (id) => {
     return (dispatch, getState) => {
         let url = `/api/menu/${id}/`;
-        Modal.confirm({
+        antd_1.Modal.confirm({
             'title': '您确认要删除这个目录吗',
             'content': '该目录下的所有文章及子目录均会被删除,请确认无误后再删除',
             onOk: () => {
-                fetch_api(url, 'delete').then(json => {
-                    message.success("删除成功");
-                    dispatch(update_menu());
+                http_1.default(url, 'delete').then(json => {
+                    antd_1.message.success("删除成功");
+                    dispatch(exports.update_menu());
+                    dispatch(user_1.actions.update_user());
                 });
             },
             onCancel: () => {
             }
         });
+        // parent ? dispatch(change_add_fetching(true)) :
+        //     dispatch(change_store_without_api(['adding_root_fetching', true]));
+        // fetch_api(
+        //     url, 'post', false, {}, JSON.stringify({name: content})
+        // ).then(json=> {
+        //     if (parent) {
+        //         dispatch(change_add_fetching(false))
+        //     } else {
+        //         dispatch(change_store_without_api(['adding_root_fetching', false]));
+        //         dispatch(change_store_without_api(['adding_content', '']));
+        //     }
+        //     return dispatch(update_menu())
+        // }).catch(e=>dispatch(change_add_fetching(false)))
     };
 };
 let initial_state = {
@@ -63,13 +86,14 @@ let initial_state = {
     adding_root_fetching: false,
     convert_modal_visible: false
 };
-export const actions = {
-    update_menu,
-    add_menu,
-    delete_menu,
-    change_store_without_api
+exports.actions = {
+    update_menu: exports.update_menu,
+    add_menu: exports.add_menu,
+    delete_menu: exports.delete_menu,
+    change_store_without_api: exports.change_store_without_api
 };
-export default handleActions({
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = redux_actions_1.handleActions({
     update_menu_info: (state, action) => {
         return Object.assign({}, state, {
             list: action.payload['items'],

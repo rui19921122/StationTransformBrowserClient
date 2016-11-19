@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {Table} from 'antd';
-import {actions, ArticleStoreInterface} from "../../store/global_reducers/articles";
+import {actions, ArticleStoreInterface} from "store/global_reducers/articles";
+import {ArticleDetailInterface} from 'api/article';
 import './style.scss'
 import {push} from 'react-router-redux';
 interface props {
@@ -59,7 +60,7 @@ export class ArticleTable extends React.Component<props,void> {
         bordered
         columns={columns}
         loading={this.props.articles.fetching_articles}
-        dataSource={this.props.articles.articles}
+        dataSource={this.props.articles.articles as any}
         onRowClick={(value:any)=>this.props.dispatch(push(`/article/${value.id}/edit/`))}
         rowKey="id"
       />

@@ -5,12 +5,14 @@ import {Row, Col, DatePicker, Button, Input, Dropdown} from 'antd';
 import {MenuStoreInterface, actions} from "../../../store/global_reducers/menu";
 import {actions as reducer_actions} from "../modules/reducer"
 import {ArticleFormComponent} from './editModalForm'
+import {UserStoreInterface} from "store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
   location: any,
   edit_article: any,
-  params: any
+  params: any,
+  user:UserStoreInterface
 }
 const RangePicker = (DatePicker as any).RangePicker;
 

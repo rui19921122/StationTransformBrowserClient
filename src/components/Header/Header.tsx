@@ -1,14 +1,14 @@
 /**
  * Created by hanrui on 2016/10/21.
  */
-import * as React from 'react'
-import {Row, Menu, Col, Badge} from 'antd'
-import {IndexLink, Link} from 'react-router'
-import './Header.scss'
+import * as React from "react";
+import {Row, Menu, Col} from "antd";
+import {Link} from "react-router";
+import "./Header.scss";
+import {UserStoreInterface, actions} from "../../store/global_reducers/user";
+import LoginInForm from "./LoginInForm";
 const SubMenu = Menu.SubMenu;
 const Item = Menu.Item;
-import {UserStoreInterface, actions} from '../../store/global_reducers/user'
-import LoginInForm from './LoginInForm';
 interface props {
   user: UserStoreInterface,
   dispatch: any
@@ -28,7 +28,8 @@ export class Header extends React.Component<props,any> {
         </Col>
         <Col span={9}>
           {this.props.user.name ? `欢迎您，${this.props.user.name}` :
-            <LoginInForm user={this.props.user} dispatch={this.props.dispatch}/>}
+            <LoginInForm
+              user={this.props.user} dispatch={this.props.dispatch}/>}
         </Col>
         <Col span={11}>
           <Menu mode="horizontal" id="nav">

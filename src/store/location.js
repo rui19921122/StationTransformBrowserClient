@@ -1,17 +1,33 @@
-export const LOCATION_CHANGE = 'LOCATION_CHANGE';
-export function locationChange(location = '/') {
+"use strict";
+// ------------------------------------
+// Constants
+// ------------------------------------
+exports.LOCATION_CHANGE = 'LOCATION_CHANGE';
+// ------------------------------------
+// Actions
+// ------------------------------------
+function locationChange(location = '/') {
     return {
-        type: LOCATION_CHANGE,
+        type: exports.LOCATION_CHANGE,
         payload: location
     };
 }
-export const updateLocation = ({ dispatch }) => {
+exports.locationChange = locationChange;
+// ------------------------------------
+// Specialized Action Creator
+// ------------------------------------
+exports.updateLocation = ({ dispatch }) => {
     return (nextLocation) => dispatch(locationChange(nextLocation));
 };
+// ------------------------------------
+// Reducer
+// ------------------------------------
 const initialState = null;
-export default function locationReducer(state = initialState, action) {
-    return action.type === LOCATION_CHANGE
+function locationReducer(state = initialState, action) {
+    return action.type === exports.LOCATION_CHANGE
         ? action.payload
         : state;
 }
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = locationReducer;
 //# sourceMappingURL=location.js.map

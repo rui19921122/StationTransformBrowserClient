@@ -1,5 +1,9 @@
-import { message } from 'antd';
-import 'isomorphic-fetch';
+"use strict";
+/**
+ * Created by Administrator on 2016/10/23.
+ */
+const antd_1 = require("antd");
+require("isomorphic-fetch");
 const fetch_api = (url, method, handle_exception = false, params, data, is_fetching, is_json) => {
     is_fetching = true;
     return new Promise((resolve, reject) => {
@@ -21,14 +25,21 @@ const fetch_api = (url, method, handle_exception = false, params, data, is_fetch
                     res.json().then(json => resolve(json)).catch(e => resolve(res.body));
                 }
                 else {
-                    res.json().then(json => message.error(`请求失败，错误代码为${res.status}，原因为${JSON.stringify(json)}`)).catch(text => message.error(text.toString()));
+                    res.json().then(json => {
+                        antd_1.message.error(`请求失败，错误代码为${res.status}，原因为${JSON.stringify(json)}`);
+                        reject(json);
+                    }).catch(text => {
+                        antd_1.message.error(text.toString());
+                        reject(text);
+                    });
                 }
             }
         }).catch(err => {
-            message.error("发生错误" + err);
+            antd_1.message.error("发生错误" + err);
             reject(err);
         });
     });
 };
-export default fetch_api;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = fetch_api;
 //# sourceMappingURL=http.js.map

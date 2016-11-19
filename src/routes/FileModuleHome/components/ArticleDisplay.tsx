@@ -1,15 +1,14 @@
 /**
  * Created by Administrator on 2016/10/23.
  */
-import * as React from 'react'
-import {Table} from 'antd';
-import {ArticleTable} from '../../../components/ArticleTable/ArticleTable';
-import {TableColumnConfig} from "antd/lib/table/Table";
-import {ArticleStoreInterface, actions} from '../../../store/global_reducers/articles';
+import * as React from "react";
+import {ArticleTable} from "../../../components/ArticleTable/ArticleTable";
+import {ArticleStoreInterface, actions} from "../../../store/global_reducers/articles";
 interface props {
   dispatch: any,
   location: any,
-  articles: ArticleStoreInterface
+  articles: ArticleStoreInterface,
+  user: any
 }
 export class ArticleDisplay extends React.Component<props,void> {
   constructor(props) {

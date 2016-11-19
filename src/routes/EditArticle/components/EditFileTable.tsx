@@ -1,13 +1,16 @@
-import {Row, Col, Table, Button} from 'antd';
-import * as React from 'react';
-import {actions, EditArticleInterface} from '../modules/reducer';
-import {ArticleDetailInterface, FileInterface} from '../../../api/article';
-import './style.scss'
+import {Button, Table} from "antd";
+import * as React from "react";
+import {actions, EditArticleInterface} from "../modules/reducer";
+import {FileInterface} from "api/article";
+import "./style.scss";
 interface props {
   dispatch: any,
   article: EditArticleInterface,
   article_id: number
 }
+class EditFileCusTable extends Table<FileInterface> {
+}
+
 export class EditFileTable extends React.Component<props,any> {
   render() {
     const columns = [
@@ -35,7 +38,7 @@ export class EditFileTable extends React.Component<props,any> {
       }
     ];
     return (
-      <Table
+      <EditFileCusTable
         className="table"
         bordered
         columns={columns}

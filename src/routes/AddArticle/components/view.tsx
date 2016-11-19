@@ -1,13 +1,14 @@
-import * as React from 'react'
-import './components.scss'
-import {FileModuleLayout} from '../../../layouts/FileModuleLayout/FileModuleLayout';
-import {Row, Col, DatePicker, Button, Input, Dropdown} from 'antd';
+import * as React from "react";
+import "./components.scss";
+import {FileModuleLayout} from "../../../layouts/FileModuleLayout/FileModuleLayout";
+import {Row, Col, DatePicker} from "antd";
 import {MenuStoreInterface, actions} from "../../../store/global_reducers/menu";
-import {ArticleFormComponent} from './addArticleForm';
+import {ArticleFormComponent} from "./addArticleForm";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,
-  location: any
+  location: any,
+  user: any
 }
 const RangePicker = (DatePicker as any).RangePicker;
 

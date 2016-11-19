@@ -15,7 +15,8 @@ import View from '../components/view'
 const mapStateToProps = (state) => ({
   menu: state.menu,
   articles: state.articles,
-  location: state.location
+  location: state.location,
+  user:state.user
 });
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:

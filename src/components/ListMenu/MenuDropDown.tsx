@@ -1,9 +1,8 @@
-import * as React from 'react';
-import {Dropdown, Menu, Icon, Input, Button} from 'antd';
+import * as React from "react";
+import {Dropdown, Menu, Icon, Input, Button} from "antd";
+import "./style.scss";
+import {actions, MenuStoreInterface} from "store/global_reducers/menu";
 const Item = Menu.Item;
-import './style.scss'
-import {Dispatch} from "redux";
-import {actions, MenuStoreInterface} from 'src/store/global_reducers/menu'
 interface props {
   dispatch: any,
   menu: MenuStoreInterface
@@ -17,9 +16,9 @@ class MenuDropDown extends React.Component<props,any> {
     'content': ''
   };
 
+
   render() {
     const handleActions = (e) => {
-      console.log(e.key);
       const key = e.key;
       let f = key.split('-');
       let action = f[3];
@@ -61,7 +60,7 @@ class MenuDropDown extends React.Component<props,any> {
             <div className="ant-input-group-wrap">
               <Button icon="check-circle-o"
                       onClick={handleSubmitButtonClick}
-                      disabled={this.state.content.length>0?false:true}
+                      disabled={this.state.content.length<=0}
                       loading={this.props.menu.add_fetching}
                       className="ant-search-btn justify-button"
               >添加</Button>
@@ -97,5 +96,4 @@ class MenuDropDown extends React.Component<props,any> {
     )
   }
 }
-;
 export default MenuDropDown;
