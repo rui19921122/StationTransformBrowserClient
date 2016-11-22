@@ -26,12 +26,12 @@ export class Header extends React.Component<props,any> {
         <Col span={4} className="title">
           <h1>Test</h1>
         </Col>
-        <Col span={9}>
+        <Col span={11}>
           {this.props.user.name ? `欢迎您，${this.props.user.name}` :
             <LoginInForm
               user={this.props.user} dispatch={this.props.dispatch}/>}
         </Col>
-        <Col span={11}>
+        <Col span={9}>
           <Menu mode="horizontal" id="nav">
             <Item><Link to={"/file-module-list/"}><span>文件管理</span></Link></Item>
             <Item><Link to={"#"}>模块名称1</Link></Item>
