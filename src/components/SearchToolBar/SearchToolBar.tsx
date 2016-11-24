@@ -12,7 +12,7 @@ interface props {
   menu_id: number
 }
 const RangePicker = (DatePicker as any).RangePicker;
-const DropdownButton = Dropdown.Button;
+const DropdownButton = Dropdown.Button as typeof Dropdown || typeof Button;
 
 export class SearchToolBar extends React.Component<props,any> {
   state = {

@@ -8,6 +8,10 @@ interface props {
   menu: MenuStoreInterface
   menu_id: number
 }
+class ButtonAdd {
+  onClick:any
+}
+const DropdownWithOnClick = Dropdown as typeof Dropdown || typeof ButtonAdd;
 
 class MenuDropDown extends React.Component<props,any> {
   state = {
@@ -76,7 +80,7 @@ class MenuDropDown extends React.Component<props,any> {
             key={"menu-settings-"+this.props.menu_id+"-delete"}>删除此目录</Item>
     </Menu>;
     return (
-      <Dropdown overlay={menu}
+      <DropdownWithOnClick overlay={menu}
                 trigger={["click"]}
                 onClick={(e)=>e.stopPropagation()}
                 onVisibleChange={flag=>this.state.visible?this.setState({'visible':false}):
@@ -92,7 +96,7 @@ class MenuDropDown extends React.Component<props,any> {
                       )}
               className="icon-settings"
         />
-      </Dropdown>
+      </DropdownWithOnClick>
     )
   }
 }
