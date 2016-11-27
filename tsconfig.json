@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src"
   },
-  "compileOnSave": true,
+  "compileOnSave": false,
   "include": [
     "src/**/*"
   ],

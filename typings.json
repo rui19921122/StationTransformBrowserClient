@@ -1,5 +1,7 @@
 {
   "dependencies": {},
   "globalDependencies": {
+    "antd": "registry:dt/antd#0.12.10+20160326114918",
+    "babel-core": "registry:dt/babel-core#6.7.0+20160423062108"
   }
 }

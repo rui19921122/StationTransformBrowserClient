@@ -18,14 +18,14 @@ const webpackConfig = {
   devtool: config.compiler_devtool,
   resolve: {
     root: paths.client(),
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['', 'ts', 'tsx', '.js', '.jsx', '.json']
   },
   module: {}
 }
 // ------------------------------------
 // Entry Points
 // ------------------------------------
-const APP_ENTRY = paths.client('main.js')
+const APP_ENTRY = paths.client('main.tsx')
 
 webpackConfig.entry = {
   app: __DEV__
@@ -130,6 +130,10 @@ webpackConfig.module.loaders = [{
 }, {
   test: /\.json$/,
   loader: 'json'
+}, {
+  test: /\.ts(x?)$/,
+  exclude: /node_modules/,
+  loader: 'babel-loader!ts-loader'
 }];
 
 // ------------------------------------
