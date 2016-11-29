@@ -4,6 +4,7 @@ const cssnano = require('cssnano')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const config = require('../config')
+const path = require('path')
 const debug = require('debug')('app:webpack:config')
 
 const paths = config.utils_paths
@@ -17,8 +18,10 @@ const webpackConfig = {
   target: 'web',
   devtool: config.compiler_devtool,
   resolve: {
-    root: paths.client(),
-    extensions: ['', 'ts', 'tsx', '.js', '.jsx', '.json']
+    root: [
+      path.resolve('./src')
+    ],
+    extensions: ['', 'tsx', 'ts', '.js', '.jsx', '.json']
   },
   module: {}
 }
