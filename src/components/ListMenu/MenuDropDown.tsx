@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Dropdown, Menu, Icon, Input, Button} from "antd";
 import "./style.scss";
-import {actions, MenuStoreInterface} from "store/global_reducers/menu";
+import {actions, MenuStoreInterface} from "src/store/global_reducers/menu";
 const Item = Menu.Item;
 interface props {
   dispatch: any,

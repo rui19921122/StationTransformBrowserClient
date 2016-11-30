@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Table} from 'antd';
-import {actions, ArticleStoreInterface} from "store/global_reducers/articles";
-import {ArticleDetailInterface} from 'api/article';
+import {actions, ArticleStoreInterface} from "src/store/global_reducers/articles";
+import {ArticleDetailInterface} from 'src/api/article';
 import './style.scss'
 import {push} from 'react-router-redux';
 interface props {

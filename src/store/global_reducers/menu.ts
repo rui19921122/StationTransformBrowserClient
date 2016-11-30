@@ -3,9 +3,9 @@
  */
 import fetch_api from "./../../http/http";
 import {createAction, handleActions} from "redux-actions";
-import {detailItemInterface, MenuItemInterface} from "../../api/menu";
+import {detailItemInterface, MenuItemInterface} from "src/api/menu";
 import {Modal, message} from "antd";
-import {actions as user_actions} from "store/global_reducers/user";
+import {actions as user_actions} from "src/store/global_reducers/user";
 // ------------------------------------
 // Constants
 // ------------------------------------

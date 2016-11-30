@@ -1,7 +1,7 @@
 import {Button, Table} from "antd";
 import * as React from "react";
 import {actions, EditArticleInterface} from "../modules/reducer";
-import {FileInterface} from "api/article";
+import {FileInterface} from "src/api/article";
 import "./style.scss";
 interface props {
   dispatch: any,

@@ -1,10 +1,12 @@
+///<reference path="../../../typings/index.d.ts"/>
+
 import * as React from "react";
 import RichTextEditor from "react-rte";
 import "./components.scss";
 
 export class Editor extends React.Component<any,any> {
   state = {
-    value: this.props.initial_value ? RichTextEditor.createValueFromString(this.props.initial_value, 'html') : RichTextEditor.createEmptyValue()
+    value: this.props.initial_value ? (RichTextEditor as any).createValueFromString(this.props.initial_value, 'html') : (RichTextEditor as any).createEmptyValue()
   };
   onChange = (value) => {
     this.setState({value});

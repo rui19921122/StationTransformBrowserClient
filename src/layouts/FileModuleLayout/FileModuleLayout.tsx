@@ -1,5 +1,5 @@
 import * as React from "react";
-import {ListMenu} from "components/ListMenu/menu";
+import {ListMenu} from "src/components/ListMenu/menu";
 import {Row, Col} from "antd";
 import "../../styles/core.scss";
 

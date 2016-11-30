@@ -1,9 +1,9 @@
 import {Form, Button, Select, Input} from "antd";
 import * as React from "react";
-import {MenuStoreInterface} from "../../../store/global_reducers/menu";
+import {MenuStoreInterface} from "src/store/global_reducers/menu";
 import {actions} from "./../modules/reducer";
-import {Editor} from "../../../components/Editor/editor";
-import {UserStoreInterface} from "store/global_reducers/user";
+import {Editor} from "src/components/Editor/editor";
+import {UserStoreInterface} from "src/store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,

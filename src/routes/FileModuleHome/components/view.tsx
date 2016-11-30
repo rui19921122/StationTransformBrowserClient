@@ -1,12 +1,12 @@
 import * as React from "react";
 import "./components.scss";
-import {FileModuleLayout} from "layouts/FileModuleLayout/FileModuleLayout";
-import {ArticleTable} from "components/ArticleTable/ArticleTable";
-import {SearchToolBar} from "components/SearchToolBar/SearchToolBar";
+import {FileModuleLayout} from "src/layouts/FileModuleLayout/FileModuleLayout";
+import {ArticleTable} from "src/components/ArticleTable/ArticleTable";
+import {SearchToolBar} from "src/components/SearchToolBar/SearchToolBar";
 import {Row, Col, DatePicker} from "antd";
-import {MenuStoreInterface} from "store/global_reducers/menu";
-import {ArticleStoreInterface, actions as article_actions} from "store/global_reducers/articles";
-import {UserStoreInterface} from "store/global_reducers/user";
+import {MenuStoreInterface} from "src/store/global_reducers/menu";
+import {ArticleStoreInterface, actions as article_actions} from "src/store/global_reducers/articles";
+import {UserStoreInterface} from "src/store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,

@@ -18,10 +18,8 @@ const webpackConfig = {
   target: 'web',
   devtool: config.compiler_devtool,
   resolve: {
-    root: [
-      path.resolve('./src')
-    ],
-    extensions: ['', 'tsx', 'ts', '.js', '.jsx', '.json']
+    extensions: ['', '.tsx', '.ts', '.js', '.jsx', '.json'],
+    alias: {src: path.resolve('./src')}
   },
   module: {}
 }
@@ -134,9 +132,9 @@ webpackConfig.module.loaders = [{
   test: /\.json$/,
   loader: 'json'
 }, {
-  test: /\.ts(x?)$/,
+  test: /\.tsx?$/,
   exclude: /node_modules/,
-  loader: 'babel-loader!ts-loader'
+  loader: 'awesome-typescript-loader'
 }];
 
 // ------------------------------------

@@ -1,11 +1,11 @@
 import * as React from 'react'
 import './components.scss'
-import {FileModuleLayout} from '../../../layouts/FileModuleLayout/FileModuleLayout';
+import {FileModuleLayout} from 'src/layouts/FileModuleLayout/FileModuleLayout';
 import {Row, Col, DatePicker, Button, Input, Dropdown} from 'antd';
-import {MenuStoreInterface, actions} from "../../../store/global_reducers/menu";
+import {MenuStoreInterface, actions} from "src/store/global_reducers/menu";
 import {actions as reducer_actions} from "../modules/reducer"
 import {ArticleFormComponent} from './editModalForm'
-import {UserStoreInterface} from "store/global_reducers/user";
+import {UserStoreInterface} from "src/store/global_reducers/user";
 interface props {
   dispatch: any,
   menu: MenuStoreInterface,

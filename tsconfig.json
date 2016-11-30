@@ -4,11 +4,12 @@
     "module": "commonjs",
     "target": "es6",
     "moduleResolution": "node",
+    "allowJs": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src"
+    "baseUrl": "./"
   },
-  "compileOnSave": false,
+  "compileOnSave": true,
   "include": [
     "src/**/*"
   ],
@@ -19,5 +20,10 @@
   ],
   "files": [
     "typings/index.d.ts"
-  ]
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "useCache": false,
+    "emitRequireType": false
+  }
 }

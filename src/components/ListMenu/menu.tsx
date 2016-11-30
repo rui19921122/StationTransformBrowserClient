@@ -4,9 +4,9 @@
 import * as React from "react";
 import "./style.scss";
 import {Menu, Switch, Button, Input, Modal} from "antd";
-import {MenuStoreInterface, actions as menu_actions} from "store/global_reducers/menu";
-import {UserStoreInterface} from "store/global_reducers/user";
-import {detailItemInterface} from "api/menu";
+import {MenuStoreInterface, actions as menu_actions} from "src/store/global_reducers/menu";
+import {UserStoreInterface} from "src/store/global_reducers/user";
+import {detailItemInterface} from "src/api/menu";
 import MenuDropDown from "./MenuDropDown";
 import UserSelect from "./UserSelect";
 import {push} from "react-router-redux";
